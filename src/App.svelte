@@ -64,9 +64,9 @@
     </div> 
     <!-- Cuerpo -->
     <div class="cuerpo">
-      <h1 style="font-family: montserrat; color: #FFFFFF; text-allign: center;">¡Bienvenidos a nuestra web!</h1>
-      <p style="font-family: roboto; color: #FFFFFF; text-allign: center;">En esta página encontrarás información sobre los pistachos de La Rioja, su cultivo, propiedades y recetas.</p>
-      <p style="font-family: roboto; color: #FFFFFF; text-allign: center;">¡Esperamos que te guste!</p>
+      <h1>¡Bienvenidos a nuestra web!</h1>
+      <p>En esta página encontrarás información sobre los pistachos de La Rioja, su cultivo, propiedades y recetas.</p>
+      <p>¡Esperamos que te guste!</p>
     </div>
     <!-- Footer -->
     <div class="footer">
@@ -104,10 +104,25 @@
 <style>
  body{
   background-color:#80A54D; /* Color Pistacho */
-  margin: 0; /* Elimina los márgenes por defecto */
   height: 100vh; /* Garantiza que cubra toda la altura de la pantalla */
   font-family: Arial, sans-serif; /* Fuente básica */
  }
+
+ .cuerpo{
+  margin: 8px; /* Margen predeterminado */
+  padding: 0;  /* Relleno desactivado para evitar inconsistencias */
+  text-align: center; /* Centra el contenido */
+ }
+
+ .cuerpo h1 {
+    font-family: montserrat;
+    color: #FFFFFF;
+  }
+
+  .cuerpo p {
+    font-family: roboto;
+    color: #FFFFFF;
+  }
 
  .header{
   background-color: #FFFFFF; /* Color de fondo */
@@ -123,6 +138,6 @@
 
  .footer img {
   margin: 0 2.5rem; /* Añade margen horizontal entre las imágenes */
-}
+ }
 
 </style>

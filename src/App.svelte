@@ -1,19 +1,19 @@
 <!-- Codigo J-S -->
 
 <script>
-  window.onload = function() {
+  window.onload = function () {
     // Número de teléfono para WhatsApp
-    var phoneNumber = "+5491127161950"; 
+    var phoneNumber = "+5491127161950";
     var prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
     var encodedMessage = encodeURIComponent(prewrittenMessage);
-    var emailAddress = "info@pistachosriojanos.com"; 
-    
+    var emailAddress = "info@pistachosriojanos.com";
+
     var instagramLink = document.getElementById("instagram-link");
     var whatsappLink = document.getElementById("whatsapp-link");
     var gmailLink = document.getElementById("gmail-link");
-    
+
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
+
     if (isMobile && !/iPad/i.test(navigator.userAgent)) {
       whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
       instagramLink.href = "instagram://user?username=pistachosriojanos";
@@ -23,52 +23,40 @@
       instagramLink.href = "https://www.instagram.com/pistachosriojanos";
       gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage;
     }
-    
-    // Función para activar el hover automáticamente en dispositivos táctiles
-    if (isMobile) {
-      document.addEventListener("DOMContentLoaded", () => {
-        const recetas = document.querySelectorAll(".receta");
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            } else {
-              entry.target.classList.remove("active");
-            }
-          });
-        }, {
-          threshold: 1 // Adjust this value as needed
+    // Activar la clase .active en recetas visibles
+    const recetas = document.querySelectorAll(".receta");
+
+    // Observador de intersección
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Si la receta está visible
+            entry.target.classList.add("fullscreen");
+          } else {
+            entry.target.classList.remove("fullscreen");
+          }
         });
+      },
+      {
+        threshold: 0.5, // Ajusta según lo que consideres visible
+      }
+    );
 
-        recetas.forEach(receta => {
-          observer.observe(receta);
-        });
+    // Observar cada receta
+    recetas.forEach((receta) => observer.observe(receta));
+
+    // Alternar manualmente fullscreen en click
+    recetas.forEach((receta) => {
+      receta.addEventListener("click", () => {
+        receta.classList.toggle("fullscreen");
       });
-    } else {
-      document.addEventListener("DOMContentLoaded", () => {
-        const recetas = document.querySelectorAll(".receta");
-
-        const enableHoverOnScroll = () => {
-          recetas.forEach(function(receta) {
-            const rect = receta.getBoundingClientRect();
-            const centerOfViewport = window.innerHeight / 2;
-
-            if (rect.top <= centerOfViewport && rect.bottom >= centerOfViewport) {
-              receta.classList.add('hover');
-            } else {
-              receta.classList.remove('hover');
-            }
-          });
-        };
-
-        // Ejecuta al cargar y cada vez que se hace scroll
-        enableHoverOnScroll();
-        window.addEventListener("scroll", enableHoverOnScroll);
-      });
-    }
+    });
   };
 </script>
+
+
 
 <!-- Codigo HTML -->
 
@@ -230,106 +218,116 @@
   }
 
   /* Recetas */
- .recetas-container {
-    overflow-x: auto;
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 20px;
-    scrollbar-width: none; /* Para Firefox */
-  } 
+ /* Recetas */
+.recetas-container {
+  overflow-x: auto;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  scrollbar-width: none; /* Para Firefox */
+}
 
-  .recetas-container::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
-  }
+.recetas-container::-webkit-scrollbar {
+  display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
+}
 
-  .recetas {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    flex-wrap: nowrap;
-  }
+.recetas {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
 
-  .receta {
-    position: relative;
-    width: 300px; /* Tamaño de cada receta */
-    height: 400px; /* Ajusta según el tamaño que quieras */
-    text-align: center;
-    flex-shrink: 0; /* Impide que las recetas se reduzcan */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.receta {
+  position: relative;
+  width: 300px; /* Tamaño de cada receta */
+  height: 400px; /* Ajusta según el tamaño que quieras */
+  text-align: center;
+  flex-shrink: 0; /* Impide que las recetas se reduzcan */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  .receta img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: 10px; /* Bordes redondeados */
-  }
+.receta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Bordes redondeados */
+}
 
-  .receta:hover img {
-    transform: scale(1.1); /* Zoom al hacer hover sobre la imagen */
-  }
+.receta:hover img {
+  transform: scale(1.1); /* Zoom al hacer hover sobre la imagen */
+}
 
-  .hover-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-  .receta:hover .hover-text {
-    opacity: 1; /* Muestra el texto al hacer hover sobre la receta */
-  }
+.receta:hover .hover-text {
+  opacity: 1; /* Muestra el texto al hacer hover sobre la receta */
+}
 
-  .btn-ver-receta {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    margin: 0 auto; /* Centra el botón horizontalmente */
-    width: fit-content; /* Asegura que el ancho del botón sea el adecuado */
-    position: relative; /* Para asegurar que el botón esté posicionado correctamente */
-    z-index: 1; /* Asegura que el botón esté por encima de otros elementos */
-  }
+.btn-ver-receta {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin: 0 auto; /* Centra el botón horizontalmente */
+  width: fit-content; /* Asegura que el ancho del botón sea el adecuado */
+  position: relative; /* Para asegurar que el botón esté posicionado correctamente */
+  z-index: 1; /* Asegura que el botón esté por encima de otros elementos */
+}
 
-  .receta:hover .btn-ver-receta {
-    opacity: 1;
-    transform: translateY(-10px); /* Pequeño movimiento hacia arriba al hacer hover */
-  }
+.receta:hover .btn-ver-receta {
+  opacity: 1;
+  transform: translateY(-10px) scale(1.1); /* Combina ambos efectos */
+}
 
-  .receta:hover .btn-ver-receta {
-    transform: scale(1.1); /* Zoom al hacer hover sobre el botón */
-  }
+.receta.fullscreen .hover-text {
+  opacity: 1;
+}
 
-  /* Hover automático */
-  .receta.active img {
-    transform: scale(1.1); /* Zoom */
-  }
+.receta.fullscreen img {
+  transform: scale(1.1);
+  border-radius: 10px; /* Mantén los bordes redondeados */
+  transition: transform 0.3s ease; /* Transición suave */
+}
 
-  .receta.active .hover-text {
-    opacity: 1; /* Muestra el texto */
-  }
+.receta.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro, opacidad ajustada */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-  .receta.active .btn-ver-receta {
-    opacity: 1; /* Muestra el botón */
-    transform: translateY(-10px); /* Movimiento hacia arriba */
-  }
+
     /* Pagina de Venta */
     .PaginaVenta {
       text-align: center; /* Centra el texto */

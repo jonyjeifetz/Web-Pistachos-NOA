@@ -66,7 +66,45 @@
     <div class="cuerpo">
       <h1>De La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
-      <p>En esta página encontrarás información sobre los pistachos de La Rioja, su cultivo, propiedades y recetas.</p>
+      <br>
+      <h1>De La Rioja a Tu Mesa: Recetas Creativas con Pistacho</h1>
+      <div class="recetas-container">
+        <div class="recetas">
+          <!-- Receta 1 -->
+          <div class="receta">
+            <img src="./images/Brownie de Pistacho.jpeg" alt="Brownie de Pistacho" />
+            <div class="hover-text">Brownie de Pistacho</div>
+            <a href="https://drive.google.com/file/d/1Zbw5SykhiiRfSp2-pC5lcwBqAvM51w4r/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+          </div>
+          <!-- Receta 2 -->
+          <div class="receta">
+            <img src="./images/Baklava.jpeg" alt="Baklava" />
+            <div class="hover-text">Baklava de Pistacho</div>
+            <a href="https://drive.google.com/file/d/1V6sNBDheU02jBE7tzeNJjLJNlpkNbT8y/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+          </div>
+          <!-- Receta 3 -->
+          <div class="receta">
+            <img src="./images/Queso.jpeg" alt="Queso" />
+            <div class="hover-text">Queso con Pistacho</div>
+            <a href="https://drive.google.com/file/d/1hwa1G7DXF9gmWTH-C3S8fcfvd9gKICJP/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+          </div>
+          <!-- Receta 4 -->
+          <div class="receta">
+            <img src="./images/Crema de Pistacho.jpeg" alt="Brownie de Pistacho" />
+            <div class="hover-text">Crema de Pistacho</div>
+            <a href="https://drive.google.com/file/d/1Gv9wytTSmbYasBnLOxM8PZKojaWBYxqJ/view?usp=sharing" target="_blank" class="btn-ver-receta" >Ver receta</a>
+          </div>
+          <!-- Receta 5 -->
+          <div class="receta">
+            <img src="./images/Trufas.jpeg" alt="Baklava" />
+            <div class="hover-text">Trufas de Pistacho, Palta y Chocolate</div>
+            <a href="https://drive.google.com/file/d/1loEPgKMhqq6IPenL4eDia_CM901GDa6R/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+          </div> 
+        </div>
+      </div>
+      
+      
+      
       <p>¡Esperamos que te guste!</p>
       <!-- Enters para que el Footer quede al final de la Pantalla. Es provisorio hasta que tenga toda la info -->
       <br>
@@ -159,13 +197,86 @@
   height: auto; /* Mantiene la relación de aspecto */
  }
 
- .footer{
-  background-color: #FFFFFF; /* Color de fondo */
-  text-align: center; /* Centra el contenido */
-  padding: 0.3rem 0; /* Espacio interno arriba y abajo */
-  width: 100%; /* Ajusta el ancho al 100% */
-  /*margin-top: 2rem; /* Espacio exterior superior */
+ .recetas-container {
+  overflow-x: auto;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  scrollbar-width: none; /* Para Firefox */
  }
+
+  .recetas-container::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
+  }
+
+  .recetas {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .receta {
+    position: relative;
+    width: 300px; /* Tamaño de cada receta */
+    height: 400px; /* Ajusta según el tamaño que quieras */
+    text-align: center;
+    flex-shrink: 0; /* Impide que las recetas se reduzcan */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .receta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 10px; /* Bordes redondeados */
+  }
+
+  .receta:hover img {
+    transform: scale(1.1); /* Zoom al hacer hover sobre la imagen */
+  }
+
+  .hover-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .receta:hover .hover-text {
+    opacity: 1; /* Muestra el texto al hacer hover sobre la receta */
+  }
+
+  .btn-ver-receta {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin: 0 auto; /* Centra el botón horizontalmente */
+    width: fit-content; /* Asegura que el ancho del botón sea el adecuado */
+  }
+
+  .receta:hover .btn-ver-receta {
+    opacity: 1;
+    transform: translateY(-10px); /* Pequeño movimiento hacia arriba al hacer hover */
+  }
 
  .footer img {
   max-width: 100%; /* Hace que las imágenes no se salgan del contenedor */

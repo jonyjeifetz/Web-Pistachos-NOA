@@ -64,10 +64,12 @@
     </div> 
     <!-- Cuerpo -->
     <div class="cuerpo">
+      
       <!-- Mapa de lugares a donde llegamos -->
       <h1>De La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
       <br>
+
       <!-- Recetas -->
       <h1>De La Rioja a Tu Mesa: Recetas Creativas con Pistacho</h1>
       <div class="recetas-container">
@@ -104,6 +106,7 @@
           </div> 
         </div>
       </div>
+
       <!-- Link a la pagina para vender -->
       <h1 class="PaginaVenta">¡Atrévete a probar el snack que te conquistará! Pistachos frescos y deliciosos te esperan</h1>
       <div class="button-container">
@@ -153,8 +156,12 @@
           <img src="./images/Gmail.png" alt="Gmail" />
         </a>
       </div>
-    </div>
     
+      <!-- Texto de copyright -->
+      <div class="footer-copy">
+        <p>© 2024 por Jonathan Jeifetz</p>
+      </div>
+    </div> 
   </main>
 </body>
 
@@ -319,10 +326,10 @@
   }
 
   /* Footer */
-  .footer {
+    .footer {
     background-color: #FFFFFF; /* Color de fondo */
     display: flex; /* Alinea los elementos en columna */
-    flex-direction: column; /* Coloca los elementos en columna (título y luego imágenes) */
+    flex-direction: column; /* Coloca los elementos en columna (título, imágenes, copyright) */
     align-items: center; /* Centra los elementos horizontalmente */
     padding: 20px 0; /* Añade espacio arriba y abajo */
   }
@@ -337,17 +344,20 @@
   .footer .social-icons {
     display: flex; /* Alinea las imágenes en una fila */
     justify-content: center; /* Centra las imágenes */
-    gap: 150px; /* Espacio entre las imágenes */
+    gap: 20px; /* Espacio entre las imágenes */
   }
 
   .footer img {
     max-width: 50px; /* Ajusta el tamaño de las imágenes */
     height: auto; /* Mantiene la relación de aspecto */
-    transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
   }
 
-  .footer img:hover {
-    transform: scale(1.2); /* Aplica el zoom al pasar el ratón */
+  /* Estilo del texto de copyright */
+  .footer-copy {
+    margin-top: 20px; /* Espacio entre las imágenes y el copyright */
+    font-size: 14px; /* Tamaño de fuente */
+    color: #666; /* Color del texto */
+    text-align: center; /* Centra el texto */
   }
 
   /* Borrado de marca de agua flourish */

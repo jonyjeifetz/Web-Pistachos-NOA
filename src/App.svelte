@@ -25,57 +25,58 @@
     }
     
     // Función para activar el hover automáticamente en dispositivos táctiles
-    document.addEventListener("DOMContentLoaded", () => {
-      const recetas = document.querySelectorAll(".receta");
-      let currentIndex = 0;
-      
-      const applyHover = (index) => {
-        recetas.forEach((receta, i) => {
-          receta.classList.toggle("active", i === index);
-        });
-      };
+    if(isMobile) {
+      document.addEventListener("DOMContentLoaded", () => {
+        const recetas = document.querySelectorAll(".receta");
+        let currentIndex = 0;
+        
+        const applyHover = (index) => {
+          recetas.forEach((receta, i) => {
+            receta.classList.toggle("active", i === index);
+          });
+        };
 
-      // Hover automático
-      setInterval(() => {
-        applyHover(currentIndex);
-        currentIndex = (currentIndex + 1) % recetas.length;
-      }, 3000);
-
-      // Hover manual con touchstart para móviles
-      recetas.forEach((receta, index) => {
-        receta.addEventListener("touchstart", () => {
-          currentIndex = index; // Actualiza el índice al tocar
+        // Hover automático
+        setInterval(() => {
           applyHover(currentIndex);
+          currentIndex = (currentIndex + 1) % recetas.length;
+        }, 3000);
+
+        // Hover manual con touchstart para móviles
+        recetas.forEach((receta, index) => {
+          receta.addEventListener("touchstart", () => {
+            currentIndex = index; // Actualiza el índice al tocar
+            applyHover(currentIndex);
+          });
+        });
+
+        // Desactiva el efecto de hover automático temporalmente al tocar
+        let autoHoverEnabled = true;
+        const disableAutoHover = () => {
+          autoHoverEnabled = false;
+          setTimeout(() => (autoHoverEnabled = true), 5000); // Rehabilita después de 5 segundos
+        };
+
+        recetas.forEach((receta) => {
+          receta.addEventListener("touchstart", disableAutoHover);
         });
       });
+    } else {
+      // Función para gestionar hover con scroll para dispositivos con mouse
+      function enableHoverOnScroll() {
+        const recetas = document.querySelectorAll('.receta');
+        recetas.forEach(function(receta) {
+          var rect = receta.getBoundingClientRect();
+          var centerOfViewport = window.innerHeight / 2;
 
-      // Desactiva el efecto de hover automático temporalmente al tocar
-      let autoHoverEnabled = true;
-      const disableAutoHover = () => {
-        autoHoverEnabled = false;
-        setTimeout(() => (autoHoverEnabled = true), 5000); // Rehabilita después de 5 segundos
-      };
-
-      recetas.forEach((receta) => {
-        receta.addEventListener("touchstart", disableAutoHover);
-      });
-    });
-
-    // Función para gestionar hover con scroll para dispositivos con mouse
-    function enableHoverOnScroll() {
-      const recetas = document.querySelectorAll('.receta');
-      recetas.forEach(function(receta) {
-        var rect = receta.getBoundingClientRect();
-        var centerOfViewport = window.innerHeight / 2;
-
-        if (rect.top <= centerOfViewport && rect.bottom >= centerOfViewport) {
-          receta.classList.add('hover');
-        } else {
-          receta.classList.remove('hover');
-        }
-      });
+          if (rect.top <= centerOfViewport && rect.bottom >= centerOfViewport) {
+            receta.classList.add('hover');
+          } else {
+            receta.classList.remove('hover');
+          }
+        });
+      }
     }
-
     // Detectar el tipo de dispositivo y activar la función adecuada
     if (isMobile) {
       enableHoverOnTouchDevices();

@@ -2,54 +2,71 @@
 
 <script>
   window.onload = function() {
-    // Número de WhatsApp al que quieres que se envíen los mensajes
-    var phoneNumber = "+5491127161950"; // Cambia este número por el que prefieras 
-
-    // El mensaje preescrito de WhatsApp, Gmail e Instagram
+    // Número de teléfono para WhatsApp
+    var phoneNumber = "+5491127161950"; 
+    
+    // Mensaje preescrito que se enviará
     var prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
+    
+    // Codifica el mensaje para asegurarse de que los caracteres especiales se manejen correctamente en una URL
     var encodedMessage = encodeURIComponent(prewrittenMessage);
-
-    // Dirección de correo para Gmail
-    var emailAddress = "info@pistachosriojanos.com"; // Cambia esto por la dirección de correo a la que deseas enviar el mensaje
-
-    // Enlaces de los iconos
+    
+    // Dirección de correo electrónico de contacto
+    var emailAddress = "info@pistachosriojanos.com"; 
+    
+    // Enlaces a las redes sociales y correo electrónico en el HTML
     var instagramLink = document.getElementById("instagram-link");
     var whatsappLink = document.getElementById("whatsapp-link");
     var gmailLink = document.getElementById("gmail-link");
-
-    // Detecta el dispositivo
+    
+    // Verifica si el usuario está usando un dispositivo móvil
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    // WhatsApp
-    if (isMobile && isMobile != "iPad") {
-      // Si es móvil, abre la app de WhatsApp
-      whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+    // Configura el enlace de WhatsApp según si el dispositivo es móvil o no
+    if (isMobile && !/iPad/i.test(navigator.userAgent)) {
+      whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;  // WhatsApp en dispositivos móviles
     } else {
-      // Si es computadora, abre WhatsApp Web
-      whatsappLink.href = "https://web.whatsapp.com/send?phone=" + phoneNumber + "&text=" + encodedMessage;
+      whatsappLink.href = "https://web.whatsapp.com/send?phone=" + phoneNumber + "&text=" + encodedMessage;  // WhatsApp en desktop
     }
 
-    // Instagram
-    if (isMobile && isMobile != "iPad") {
-      // Si es móvil, abre la app de Instagram
-      instagramLink.href = "instagram://user?username=pistachosriojanos";  // Cambia 'tu_usuario' por tu nombre de usuario en Instagram
+    // Configura el enlace de Instagram según si el dispositivo es móvil o no
+    if (isMobile && !/iPad/i.test(navigator.userAgent)) {
+      instagramLink.href = "instagram://user?username=pistachosriojanos";  // App de Instagram en móviles
     } else {
-      // Si es computadora, abre Instagram Web
-      instagramLink.href = "https://www.instagram.com/pistachosriojanos";  // Cambia 'tu_usuario' por tu nombre de usuario en Instagram
+      instagramLink.href = "https://www.instagram.com/pistachosriojanos";  // Instagram en desktop
     }
 
-    // Gmail
+    // Configura el enlace de Gmail según si el dispositivo es móvil o no
     if (isMobile) {
-      // Si es móvil, abre la app de Gmail
-      gmailLink.href = "mailto:" + emailAddress + "?subject=Mas Informacion&body=" + encodedMessage; // En el "?subject=......&body="" puedes cambiar el asunto del correo
+      gmailLink.href = "mailto:" + emailAddress + "?subject=Mas Informacion&body=" + encodedMessage;  // Gmail en dispositivos móviles
     } else {
-      // Si es computadora, abre Gmail Web
-      gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage; // En el "&su=......&body=" puedes cambiar el asunto del correo
+      gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage;  // Gmail en desktop
     }
+
+    // Función para detectar si un elemento está en el centro de la pantalla
+    function checkHover() {
+      const recetas = document.querySelectorAll('.receta');  // Selecciona todos los elementos con la clase 'receta'
+      recetas.forEach(function(receta) {
+        var rect = receta.getBoundingClientRect();  // Obtiene las coordenadas del elemento en la pantalla
+        var isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;  // Verifica si el elemento está dentro del área visible de la pantalla
+        var centerOfViewport = window.innerHeight / 2;  // Calcula el centro de la pantalla
+
+        // Si la receta está cerca del centro de la pantalla, activa el hover
+        if (rect.top <= centerOfViewport && rect.bottom >= centerOfViewport) {
+          receta.classList.add('hover'); // Agrega la clase 'hover' para activar el efecto
+        } else {
+          receta.classList.remove('hover'); // Elimina la clase 'hover' si no está en el centro
+        }
+      });
+    }
+
+    // Llama a checkHover cuando el usuario se desplace por la página
+    window.addEventListener('scroll', checkHover);
+    
+    // También llama a la función al cargar la página para verificar los elementos desde el principio
+    checkHover();
   };
 </script>
-
-
 
 <!-- Codigo HTML -->
 
@@ -64,7 +81,7 @@
     </div> 
     <!-- Cuerpo -->
     <div class="cuerpo">
-      
+
       <!-- Mapa de lugares a donde llegamos -->
       <h1>De La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
@@ -324,6 +341,20 @@
     transform: scale(1.1); /* Zoom al pasar el mouse */
     background-color: #333; /* Fondo gris oscuro al hacer hover */
   }
+
+  .receta.hover img {
+    transform: scale(1.1); /* Zoom de la imagen */
+  }
+
+  .receta.hover .hover-text {
+    opacity: 1; /* Muestra el texto al hacer hover */
+  }
+
+  .receta.hover .btn-ver-receta {
+    opacity: 1; /* Muestra el botón */
+    transform: translateY(-10px); /* Pequeño movimiento hacia arriba */
+  }
+
 
   /* Footer */
     .footer {

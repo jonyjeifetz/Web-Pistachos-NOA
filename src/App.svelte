@@ -27,11 +27,37 @@
     // Función para activar el hover automáticamente en dispositivos táctiles
     document.addEventListener("DOMContentLoaded", () => {
       const recetas = document.querySelectorAll(".receta");
+      let currentIndex = 0;
+      
+      const applyHover = (index) => {
+        recetas.forEach((receta, i) => {
+          receta.classList.toggle("active", i === index);
+        });
+      };
+
+      // Hover automático
+      setInterval(() => {
+        applyHover(currentIndex);
+        currentIndex = (currentIndex + 1) % recetas.length;
+      }, 3000);
+
+      // Hover manual con touchstart para móviles
       recetas.forEach((receta, index) => {
-        setTimeout(() => {
-          receta.classList.add("auto-hover");
-          setTimeout(() => receta.classList.remove("auto-hover"), 2000); // Desactiva después de 2 segundos
-        }, index * 3000); // Activa el hover automático de cada receta en intervalos
+        receta.addEventListener("touchstart", () => {
+          currentIndex = index; // Actualiza el índice al tocar
+          applyHover(currentIndex);
+        });
+      });
+
+      // Desactiva el efecto de hover automático temporalmente al tocar
+      let autoHoverEnabled = true;
+      const disableAutoHover = () => {
+        autoHoverEnabled = false;
+        setTimeout(() => (autoHoverEnabled = true), 5000); // Rehabilita después de 5 segundos
+      };
+
+      recetas.forEach((receta) => {
+        receta.addEventListener("touchstart", disableAutoHover);
       });
     });
 
@@ -306,30 +332,25 @@
     transform: scale(1.1); /* Zoom al hacer hover sobre el botón */
   }
 
-  /* Hover Automático */
-  .receta.auto-hover img {
-      transform: scale(1.1); /* Zoom de la imagen */
-    }
-
-    .receta.auto-hover .hover-text,
-    .receta.auto-hover .btn-ver-receta {
-      opacity: 1; /* Muestra el texto y el botón */
-      transform: translateY(-10px); /* Mueve el botón hacia arriba */
-    }
-
-    .receta.auto-hover:hover img,
-    .receta.auto-hover:hover .hover-text,
-    .receta.auto-hover:hover .btn-ver-receta {
-      transform: scale(1.1); /* Hover con mouse tiene prioridad */
-      opacity: 1; /* Asegura que se mantenga visible */
-    }
-
-  /* Pagina de Venta */
-  .PaginaVenta {
-    text-align: center; /* Centra el texto */
-    font-size: 2rem; /* Ajusta el tamaño del título */
-    margin-bottom: 20px; /* Espacio debajo del título */
+  /* Hover automático */
+  .receta.active img {
+    transform: scale(1.1); /* Zoom */
   }
+
+  .receta.active .hover-text {
+    opacity: 1; /* Muestra el texto */
+  }
+
+  .receta.active .btn-ver-receta {
+    opacity: 1; /* Muestra el botón */
+    transform: translateY(-10px); /* Movimiento hacia arriba */
+  }
+    /* Pagina de Venta */
+    .PaginaVenta {
+      text-align: center; /* Centra el texto */
+      font-size: 2rem; /* Ajusta el tamaño del título */
+      margin-bottom: 20px; /* Espacio debajo del título */
+    }
 
   .button-container {
     text-align: center; /* Centra el botón */

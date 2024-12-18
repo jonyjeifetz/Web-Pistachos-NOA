@@ -43,19 +43,19 @@
         }, 3000);
 
         // Hover manual con touchstart para móviles
-        recetas.forEach((receta, index) => {
-          receta.addEventListener("touchstart", () => {
-            currentIndex = index; // Actualiza el índice al tocar
-            applyHover(currentIndex);
-          });
-        });
+        // recetas.forEach((receta, index) => {
+        //   receta.addEventListener("touchstart", () => {
+        //     currentIndex = index; // Actualiza el índice al tocar
+        //     applyHover(currentIndex);
+        //   });
+        // });
 
         // Desactiva el efecto de hover automático temporalmente al tocar
-        let autoHoverEnabled = true;
-        const disableAutoHover = () => {
-          autoHoverEnabled = false;
-          setTimeout(() => (autoHoverEnabled = true), 5000); // Rehabilita después de 5 segundos
-        };
+        // let autoHoverEnabled = true;
+        // const disableAutoHover = () => {
+        //   autoHoverEnabled = false;
+        //   setTimeout(() => (autoHoverEnabled = true), 5000); // Rehabilita después de 5 segundos
+        // };
 
         recetas.forEach((receta) => {
           receta.addEventListener("touchstart", disableAutoHover);

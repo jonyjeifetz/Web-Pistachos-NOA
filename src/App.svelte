@@ -64,9 +64,11 @@
     </div> 
     <!-- Cuerpo -->
     <div class="cuerpo">
+      <!-- Mapa de lugares a donde llegamos -->
       <h1>De La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
       <br>
+      <!-- Recetas -->
       <h1>De La Rioja a Tu Mesa: Recetas Creativas con Pistacho</h1>
       <div class="recetas-container">
         <div class="recetas">
@@ -102,8 +104,13 @@
           </div> 
         </div>
       </div>
-      
-      
+      <!-- Link a la pagina para vender -->
+      <h1 class="PaginaVenta">¡Atrévete a probar el snack que te conquistará! Pistachos frescos y deliciosos te esperan</h1>
+      <div class="button-container">
+        <a href="https://www.pistachosriojanos.com/" target="_blank">
+          <button class="order-button">Haz tu pedido</button>
+        </a>
+      </div>
       
       <p>¡Esperamos que te guste!</p>
       <!-- Enters para que el Footer quede al final de la Pantalla. Es provisorio hasta que tenga toda la info -->
@@ -201,80 +208,115 @@
   padding: 20px;
   margin-bottom: 20px;
   scrollbar-width: none; /* Para Firefox */
- }
+}
 
-  .recetas-container::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
-  }
+.recetas-container::-webkit-scrollbar {
+  display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
+}
 
-  .recetas {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    flex-wrap: nowrap;
-  }
+.recetas {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
 
-  .receta {
-    position: relative;
-    width: 300px; /* Tamaño de cada receta */
-    height: 400px; /* Ajusta según el tamaño que quieras */
-    text-align: center;
-    flex-shrink: 0; /* Impide que las recetas se reduzcan */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.receta {
+  position: relative;
+  width: 300px; /* Tamaño de cada receta */
+  height: 400px; /* Ajusta según el tamaño que quieras */
+  text-align: center;
+  flex-shrink: 0; /* Impide que las recetas se reduzcan */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  .receta img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: 10px; /* Bordes redondeados */
-  }
+.receta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Bordes redondeados */
+}
 
-  .receta:hover img {
-    transform: scale(1.1); /* Zoom al hacer hover sobre la imagen */
-  }
+.receta:hover img {
+  transform: scale(1.1); /* Zoom al hacer hover sobre la imagen */
+}
 
-  .hover-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-  .receta:hover .hover-text {
-    opacity: 1; /* Muestra el texto al hacer hover sobre la receta */
-  }
+.receta:hover .hover-text {
+  opacity: 1; /* Muestra el texto al hacer hover sobre la receta */
+}
 
-  .btn-ver-receta {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    margin: 0 auto; /* Centra el botón horizontalmente */
-    width: fit-content; /* Asegura que el ancho del botón sea el adecuado */
-  }
+.btn-ver-receta {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin: 0 auto; /* Centra el botón horizontalmente */
+  width: fit-content; /* Asegura que el ancho del botón sea el adecuado */
+  position: relative; /* Para asegurar que el botón esté posicionado correctamente */
+  z-index: 1; /* Asegura que el botón esté por encima de otros elementos */
+}
 
-  .receta:hover .btn-ver-receta {
-    opacity: 1;
-    transform: translateY(-10px); /* Pequeño movimiento hacia arriba al hacer hover */
-  }
+.receta:hover .btn-ver-receta {
+  opacity: 1;
+  transform: translateY(-10px); /* Pequeño movimiento hacia arriba al hacer hover */
+}
 
-  .footer {
+.receta:hover .btn-ver-receta {
+  transform: scale(1.1); /* Zoom al hacer hover sobre el botón */
+}
+
+
+
+  .PaginaVenta {
+  text-align: center; /* Centra el texto */
+  font-size: 2rem; /* Ajusta el tamaño del título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.button-container {
+  text-align: center; /* Centra el botón */
+}
+
+.order-button {
+  background-color: black; /* Fondo negro */
+  color: white; /* Texto blanco */
+  font-size: 1.2rem; /* Tamaño del texto */
+  padding: 10px 20px; /* Espaciado dentro del botón */
+  border: none; /* Sin bordes */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Animación suave */
+}
+
+.order-button:hover {
+  transform: scale(1.1); /* Zoom al pasar el mouse */
+  background-color: #333; /* Fondo gris oscuro al hacer hover */
+}
+
+
+.footer {
   background-color: #FFFFFF; /* Color de fondo */
   display: flex; /* Alinea los elementos en columna */
   flex-direction: column; /* Coloca los elementos en columna (título y luego imágenes) */
@@ -292,13 +334,19 @@
 .footer .social-icons {
   display: flex; /* Alinea las imágenes en una fila */
   justify-content: center; /* Centra las imágenes */
-  gap: 20px; /* Espacio entre las imágenes */
+  gap: 150px; /* Espacio entre las imágenes */
 }
 
 .footer img {
   max-width: 50px; /* Ajusta el tamaño de las imágenes */
   height: auto; /* Mantiene la relación de aspecto */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
 }
+
+.footer img:hover {
+  transform: scale(1.2); /* Aplica el zoom al pasar el ratón */
+}
+
 
 
  .flourish-embed {

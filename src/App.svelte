@@ -80,7 +80,7 @@
     <div class="cuerpo">
 
       <!-- Mapa de lugares a donde llegamos -->
-      <h1>De La Rioja al mundo: nuestro alcance</h1>
+      <h1>Des La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
       <br>
 
@@ -231,44 +231,47 @@
     width: 100%;
     padding: 20px;
     margin-bottom: 20px;
-    overflow-x: auto; /* Habilita el scroll horizontal */
-    scrollbar-width: none; /* Para Firefox */
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
 .recetas-container::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento en Chrome, Safari y Edge */
+    display: none;
 }
 
 .recetas {
     display: flex;
     gap: 20px;
-    width: max-content; /* Asegura que el contenedor se ajuste al contenido */
+    width: max-content;
     flex-wrap: nowrap;
 }
 
 .receta {
     position: relative;
-    width: 300px; /* Tamaño de cada receta */
-    height: 400px; /* Ajusta según el tamaño que quieras */
+    width: 300px;  /* Tamaño base para pantallas grandes */
+    height: 400px;
     text-align: center;
-    flex-shrink: 0; /* Impide que las recetas se reduzcan */
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+/* Ajuste de tamaño de imagen */
 .receta img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 10px;
 }
 
+/* Efecto hover */
 .receta:hover img {
-    transform: scale(1.1); /* Zoom al hacer hover sobre la imagen */
+    transform: scale(1.1);
 }
 
+/* Hover-text */
 .hover-text {
     position: absolute;
     top: 50%;
@@ -285,9 +288,10 @@
 }
 
 .receta:hover .hover-text {
-    opacity: 1; /* Muestra el texto al hacer hover sobre la receta */
+    opacity: 1;
 }
 
+/* Botón */
 .btn-ver-receta {
     background-color: black;
     color: white;
@@ -297,45 +301,52 @@
     font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    margin: 0 auto; /* Centra el botón horizontalmente */
-    width: fit-content; /* Asegura que el ancho del botón sea el adecuado */
-    position: relative; /* Para asegurar que el botón esté posicionado correctamente */
-    z-index: 1; /* Asegura que el botón esté por encima de otros elementos */
+    margin: 0 auto;
+    width: fit-content;
+    position: relative;
+    z-index: 1;
 }
 
 .receta:hover .btn-ver-receta {
     opacity: 1;
-    transform: translateY(-10px) scale(1.1); /* Combina ambos efectos */
+    transform: translateY(-10px) scale(1.1);
 }
 
-/* Nueva clase para hover automático */
-.receta.show-hover .hover-text {
-    opacity: 1; /* Muestra el texto automáticamente */
-}
-
-.receta.show-hover .btn-ver-receta {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.1); /* Aplica el mismo efecto que en el hover */
-}
-
-/* Estilo para receta en pantalla completa */
-.receta.fullscreen .hover-text {
-    opacity: 1;
-}
-
-.receta.fullscreen img {
-    transform: scale(1.1);
-    border-radius: 10px; /* Mantén los bordes redondeados */
-    transition: transform 0.3s ease; /* Transición suave */
-}
-
-/* Ajustes para pantallas pequeñas */
+/* Ajustes para dispositivos pequeños */
 @media (max-width: 768px) {
-  .receta {
-    width: 90%; /* Ajusta el ancho al viewport */
-    height: auto; /* Altura dinámica */
-  }
+    .receta {
+        width: 250px;  /* Reduce el tamaño de cada receta en pantallas pequeñas */
+        height: 350px;
+    }
+
+    .receta img {
+        width: 100%;
+        height: auto;  /* Ajuste para que las imágenes se mantengan proporcionadas */
+    }
 }
+
+@media (max-width: 480px) {
+    .receta {
+        width: 200px;  /* Ajuste para pantallas aún más pequeñas */
+        height: 300px;
+    }
+
+    .receta img {
+        width: 100%;
+        height: auto;
+    }
+
+    .hover-text {
+        font-size: 18px;  /* Ajusta el tamaño de la fuente para pantallas pequeñas */
+        padding: 5px;
+    }
+
+    .btn-ver-receta {
+        font-size: 14px;  /* Reduce el tamaño del texto en el botón */
+        padding: 8px 16px;  /* Ajusta el tamaño del botón */
+    }
+}
+
 
 
 

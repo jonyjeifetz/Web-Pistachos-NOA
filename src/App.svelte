@@ -24,24 +24,24 @@
       gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage;
     }
 
-    // Activar la clase .show-hover en recetas visibles
+    // Activar la clase .show-hover cuando las recetas son completamente visibles
     const recetas = document.querySelectorAll(".receta");
 
-    // Observador de intersección para mostrar hover automáticamente
+    // Observador de intersección
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.7) {
-            // Agrega la clase .show-hover si está visible
+          if (entry.isIntersecting && entry.intersectionRatio === 1) {
+            // Agrega la clase .show-hover si el elemento está completamente visible
             entry.target.classList.add("show-hover");
           } else {
-            // Elimina la clase .show-hover si deja de ser visible
+            // Elimina la clase .show-hover si deja de estar completamente visible
             entry.target.classList.remove("show-hover");
           }
         });
       },
       {
-        threshold: [0.7] // Detecta cuando el 70% del elemento es visible
+        threshold: [1.0] // Detecta solo cuando el 100% del elemento es visible
       }
     );
 
@@ -56,6 +56,7 @@
     });
   };
 </script>
+
 
 
 

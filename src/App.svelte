@@ -1,21 +1,19 @@
 <!-- Codigo J-S -->
 
 <script>
-  import { onMount } from 'svelte';
-
-  onMount(() => {
+  window.onload = function() {
     // Número de teléfono para WhatsApp
-    const phoneNumber = "+5491127161950";
-    const prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
-    const encodedMessage = encodeURIComponent(prewrittenMessage);
-    const emailAddress = "info@pistachosriojanos.com";
-
-    const instagramLink = document.getElementById("instagram-link");
-    const whatsappLink = document.getElementById("whatsapp-link");
-    const gmailLink = document.getElementById("gmail-link");
-
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
+    var phoneNumber = "+5491127161950"; 
+    var prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
+    var encodedMessage = encodeURIComponent(prewrittenMessage);
+    var emailAddress = "info@pistachosriojanos.com"; 
+    
+    var instagramLink = document.getElementById("instagram-link");
+    var whatsappLink = document.getElementById("whatsapp-link");
+    var gmailLink = document.getElementById("gmail-link");
+    
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
     if (isMobile && !/iPad/i.test(navigator.userAgent)) {
       whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
       instagramLink.href = "instagram://user?username=pistachosriojanos";
@@ -61,7 +59,14 @@
         document.body.style.overflow = isFullscreen ? "auto" : "hidden";
       });
     });
-  });
+
+    // Activar automáticamente los hovers en dispositivos táctiles
+    if (isMobile) {
+      recetas.forEach((receta) => {
+        receta.classList.add("show-hover");
+      });
+    }
+  };
 </script>
 
 
@@ -81,7 +86,7 @@
     <div class="cuerpo">
 
       <!-- Mapa de lugares a donde llegamos -->
-      <h1>De La Rioja al mundo: nuestro alcance</h1>
+      <h1>Des La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
       <br>
 

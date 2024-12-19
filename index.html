@@ -8,13 +8,37 @@
 
     <!-- Llamada reseteo de estilos default: public/css/main.css  -->
     <link rel="stylesheet" href="./css/main.css" />
+    
+    <style>
+      /* Estilos adicionales para el hover */
+      .image {
+        transition: transform 0.3s ease;
+      }
+      .hover {
+        transform: scale(1.1); /* Aumenta el tamaño de la imagen */
+      }
+    </style>
   </head>
 
   <body>
     <div id="app"></div>
+    
+    <!-- Aquí va la imagen que quieres que tenga el hover automático -->
+    <img id="myImage" class="image" src="imagen.jpg" alt="Imagen">
+
     <script type="module" src="/src/main.js"></script>
+    
     <!-- JS for flourish charts -->
     <script src="https://public.flourish.studio/resources/embed.js"></script>
 
+    <script>
+      // Activar la clase hover automáticamente después de 2 segundos
+      window.onload = function() {
+        const image = document.getElementById('myImage');
+        setTimeout(function() {
+          image.classList.add('hover');
+        }, 2000);  // 2000 milisegundos = 2 segundos
+      };
+    </script>
   </body>
 </html>

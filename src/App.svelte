@@ -24,23 +24,24 @@
       gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage;
     }
 
-    // Activar la clase .active en recetas visibles
+    // Activar la clase .show-hover en recetas visibles
     const recetas = document.querySelectorAll(".receta");
 
-    // Observador de intersección
+    // Observador de intersección para mostrar hover automáticamente
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Si la receta está visible
-            entry.target.classList.add("fullscreen");
+          if (entry.isIntersecting && entry.intersectionRatio > 0.7) {
+            // Agrega la clase .show-hover si está visible
+            entry.target.classList.add("show-hover");
           } else {
-            entry.target.classList.remove("fullscreen");
+            // Elimina la clase .show-hover si deja de ser visible
+            entry.target.classList.remove("show-hover");
           }
         });
       },
       {
-        threshold: 0.5, // Ajusta según lo que consideres visible
+        threshold: [0.7] // Detecta cuando el 70% del elemento es visible
       }
     );
 
@@ -55,6 +56,7 @@
     });
   };
 </script>
+
 
 
 
@@ -217,9 +219,8 @@
     height: auto; /* Mantiene la relación de aspecto */
   }
 
-  /* Recetas */
  /* Recetas */
-.recetas-container {
+ .recetas-container {
   overflow-x: auto;
   display: flex;
   justify-content: flex-start;
@@ -230,7 +231,7 @@
 }
 
 .recetas-container::-webkit-scrollbar {
-  display: none; /* Oculta la barra de desplazamiento en Chrome, Safari, y Edge */
+  display: none; /* Oculta la barra de desplazamiento en Chrome, Safari y Edge */
 }
 
 .recetas {
@@ -302,6 +303,17 @@
   transform: translateY(-10px) scale(1.1); /* Combina ambos efectos */
 }
 
+/* Nueva clase para hover automático */
+.receta.show-hover .hover-text {
+  opacity: 1; /* Muestra el texto automáticamente */
+}
+
+.receta.show-hover .btn-ver-receta {
+  opacity: 1;
+  transform: translateY(-10px) scale(1.1); /* Aplica el mismo efecto que en el hover */
+}
+
+/* Estilo para receta en pantalla completa */
 .receta.fullscreen .hover-text {
   opacity: 1;
 }
@@ -326,6 +338,7 @@
   align-items: center;
   padding: 20px;
 }
+
 
 
     /* Pagina de Venta */

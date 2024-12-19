@@ -1,18 +1,20 @@
 <!-- Codigo J-S -->
 
 <script>
-  window.onload = function () {
+  import { onMount } from 'svelte';
+
+  onMount(() => {
     // Número de teléfono para WhatsApp
-    var phoneNumber = "+5491127161950";
-    var prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
-    var encodedMessage = encodeURIComponent(prewrittenMessage);
-    var emailAddress = "info@pistachosriojanos.com";
+    const phoneNumber = "+5491127161950";
+    const prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
+    const encodedMessage = encodeURIComponent(prewrittenMessage);
+    const emailAddress = "info@pistachosriojanos.com";
 
-    var instagramLink = document.getElementById("instagram-link");
-    var whatsappLink = document.getElementById("whatsapp-link");
-    var gmailLink = document.getElementById("gmail-link");
+    const instagramLink = document.getElementById("instagram-link");
+    const whatsappLink = document.getElementById("whatsapp-link");
+    const gmailLink = document.getElementById("gmail-link");
 
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile && !/iPad/i.test(navigator.userAgent)) {
       whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
@@ -59,7 +61,7 @@
         document.body.style.overflow = isFullscreen ? "auto" : "hidden";
       });
     });
-  };
+  });
 </script>
 
 

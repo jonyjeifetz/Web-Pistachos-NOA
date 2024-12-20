@@ -191,16 +191,6 @@
 
       <!-- Nuestra Gente -->
       <h1 style="font-family: montserrat;">Nuestra Gente</h1>
-
-      <!-- Pagina de Venta -->
-      <h1 class="PaginaVenta">¡Atrévete a probar el snack que te conquistará! Pistachos frescos y deliciosos te esperan</h1>
-      <div class="button-container">
-        <a href="https://www.pistachosriojanos.com/" target="_blank">
-          <button class="order-button">Haz tu pedido</button>
-        </a>
-      </div>
-      
-      
     </div>
 
     <div class="footer">
@@ -432,28 +422,6 @@
           font-size: 14px;  /* Reduce el tamaño del texto en el botón */
           padding: 8px 16px;  /* Ajusta el tamaño del botón */
       }
-  }
-
-    /* Pagina de Venta */
-    .PaginaVenta {
-      text-align: center; /* Centra el texto */
-      font-size: 2rem; /* Ajusta el tamaño del título */
-      margin-bottom: 20px; /* Espacio debajo del título */
-    }
-
-  .button-container {
-    text-align: center; /* Centra el botón */
-  }
-
-  .order-button {
-    background-color: black; /* Fondo negro */
-    color: white; /* Texto blanco */
-    font-size: 1.2rem; /* Tamaño del texto */
-    padding: 10px 20px; /* Espaciado dentro del botón */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Animación suave */
   }
   
   /* Footer */

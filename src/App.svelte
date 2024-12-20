@@ -69,13 +69,11 @@
   };
 </script>
 
-
-
-
 <!-- Codigo HTML -->
 
 <body>
   <main>
+    <!-- Header -->
     <div class="header">
       <img
         src="./images/Logo-Pistachos.png"
@@ -84,10 +82,71 @@
     </div> 
 
     <div class="cuerpo">
+      <!-- Acerca de Nosotros -->
+      <div class="acerca-de-nosotros">
+        <h1>Acerca de Nosotros</h1>
+        <div class="nuestros-valores">
+          <br>
+          <h3>Nuestros valores</h3>
+          <p style="text-align: left; margin-top: -3%"><strong style="text-decoration: underline;">Compromiso:</strong> Construimos relaciones de largo plazo con nuestros colaboradores, clientes, proveedores y todas las partes interesadas.
+          <br>
+          <strong style="text-decoration: underline;">Creatividad:</strong> Pensar, re pensar, co crear buscando mejores soluciones que nos permitan dar lo mejor de nosotros.
+          <br>
+          <strong style="text-decoration: underline;">Transparencia:</strong> Comunicamos internamente las razones de nuestras acciones con el objetivo de crear conocimiento de manera colectiva y poder delegar la toma de decisiones. Recibimos positivamente toda retroalimentación de nuestros colaboradores.
+          <br>
+          <strong style="text-decoration: underline;">Sinergia:</strong> Contribuimos con el otro para la concreción de los objetivos y obtener resultados más positivos.
+          <br>
+          <strong style="text-decoration: underline;">Convivencia Positiva:</strong> Mantenemos vínculos saludables y propiciamos la felicidad y el disfrute durante el desarrollo de la actividad laboral.
+          <br>
+          <strong style="text-decoration: underline;">Crecimiento y Desarrollo:</strong> Alentamos el crecimiento y desarrollo de todos nuestros colaboradores y clientes.</p>
+        </div>
+      </div>
+
+      <!-- Acerca del Pistacho -->
+      <div class="acerca-del-pistacho">
+          <h1>Acerca del Pistacho</h1>
+          <div class="historia-del-pistacho">
+            <h3>Historia del Pistacho</h3>
+            <p style="text-align: left; margin-top: -3%">El pistacho nace del árbol pistachero o alfóncigo, denominado Pistacia Vera, perteneciente a la misma familia que el del anacardo. Sus orígenes se remontan a Asia occidental y Asia menor, donde comenzaron a cultivarse por primera vez en las zonas más secas de Irán, Turkmenistán, Turquía y Afganistán. 
+              De hecho, uno de los requisitos para que el alfóndigo dé sus frutos es que haya sido cultivado en zonas con mucho calor y con ambientes con índices de humedad bajos.
+            <br>
+            Ya conocido por los egipcios, griegos y romanos, el pistacho atravesó Siria para aterrizar en Italia en el siglo I, extendiéndose más tarde por el mediterráneo.
+            Hoy en día, este fruto seco ya se cultiva en todo el sur de Europa y el norte de África, además de otras zonas como California, Nuevo México o Austria. Sin embargo, Oriente Medio sigue siendo la cuna del pistacho por excelencia.
+            <br>
+            Y aunque comer pistachos hoy en día es de lo más habitual, no siempre ha sido así. En sus orígenes estaba considerado como un producto exclusivo de las clases sociales más elevadas. Tanto, que una de las leyendas cuenta que hace más de 3.000 años la reina de Saba quedó prendada de este fruto seco, elevándolo a alimento exclusivo de la realeza, 
+            y prohibiéndolo al pueblo.
+            </p>
+          </div>
+          <div class="propiedades-del-pistacho">
+            <h3>Propiedades del Pistacho</h3>
+            <p style="text-align: left; margin-top: -3%">La cáscara que recubre el pistacho alberga en su interior un fruto verde enormemente nutritivo, alargado y de un tamaño parecido al de una avellana. Frito, tostado o con un toque extra de sal, el pistacho es igualmente delicioso. Sin embargo, consumirlo crudo sigue siendo la opción más saludable.
+            Entre la larga lista de propiedades del pistacho, la Fundación Española de la Nutrición (FEN) destaca los siguientes:</p>
+            <ul style="text-align: left; margin-top: -3%; list-style-position: inside; padding-left: 0; color: #FFFFFF; display: inline-block;">
+              <li>Alto contenido en grasas insaturadas (grasas buenas).</li>
+              <li>Gran aporte de hidratos de carbono.</li>
+              <li>Buena fuente de proteínas vegetales.</li>
+              <li>Elevado poder antioxidante.</li>
+              <li>Abundante contenido de vitaminas B6 y E, zinc, potasio y fósforo.</li>
+              <li>Muy ricos en magnesio, hierro y calcio.</li>
+            </ul> 
+          </div>
+          <div class="beneficios-del-pistacho">
+            <h3>Beneficios del Pistacho</h3>
+            <ul style="text-align: left; margin-top: -1%; list-style-position: inside; padding-left: 0; color: #FFFFFF; display: inline-block;">
+              <li>Mejora la salud cardiovascular y el colesterol.</li>
+              <li>Rico en antioxidantes.</li>
+              <li>Posee un alto valor nutritivo.</li>
+              <li>Reduce el estrés y la anemia.</li>
+              <li>Ayuda a prevenir la obesidad y la diabetes.</li>
+            </ul>            
+          </div>         
+      </div>
+      <!-- Mapa -->
       <h1>De La Rioja al mundo: nuestro alcance</h1>
       <div class="flourish-embed flourish-map" data-src="visualisation/20858873"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20858873/thumbnail" width="100%" alt="map visualization" /></noscript></div>
       <br>
 
+      <!-- Recetas -->
       <h1>De La Rioja a Tu Mesa: Recetas Creativas con Pistacho</h1>
       <div class="recetas-container">
         <div class="recetas">
@@ -124,6 +183,16 @@
         </div>
       </div>
 
+      <!-- Ultimas noticias del pistacho -->
+      <h1 style="font-family: montserrat;">Ultimas Noticias del Pistacho</h1>
+
+      <!-- Responsabilidad Social Empresarial -->
+      <h1 style="font-family: montserrat;">Responsabilidad Social Empresarial</h1>
+
+      <!-- Nuestra Gente -->
+      <h1 style="font-family: montserrat;">Nuestra Gente</h1>
+
+      <!-- Pagina de Venta -->
       <h1 class="PaginaVenta">¡Atrévete a probar el snack que te conquistará! Pistachos frescos y deliciosos te esperan</h1>
       <div class="button-container">
         <a href="https://www.pistachosriojanos.com/" target="_blank">
@@ -131,8 +200,7 @@
         </a>
       </div>
       
-      <p>¡Esperamos que te guste!</p>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      
     </div>
 
     <div class="footer">
@@ -157,9 +225,6 @@
   </main>
 </body>
 
-
-
-
 <!-- Codigo CSS -->
 
 <style>
@@ -181,7 +246,7 @@
     flex: 1; /* Ocupa el espacio restante entre el header y el footer */
   }
 
- .cuerpo h1 {
+ .cuerpo h1, h3 {
     font-family: montserrat;
     color: #FFFFFF;
   }
@@ -190,6 +255,7 @@
     font-family: roboto;
     color: #FFFFFF;
     padding: 1rem 0;
+    text-align: center;
   }
 
   /* Header */
@@ -203,149 +269,170 @@
     height: auto; /* Mantiene la relación de aspecto */
   }
 
- /* Recetas */
-.recetas-container {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 20px;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
 
-.recetas-container::-webkit-scrollbar {
-    display: none;
-}
-
-.recetas {
-    display: flex;
-    gap: 20px;
-    width: max-content;
-    flex-wrap: nowrap;
-}
-
-.receta {
-    position: relative;
-    width: 300px;  /* Tamaño base para pantallas grandes */
-    height: 400px;
-    text-align: center;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease;
-}
-
-/* Ajuste de tamaño de imagen */
-.receta img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: 10px;
-}
-
-/* Efecto hover para dispositivos con mouse */
-.receta:hover img {
-    transform: scale(1.1);  /* Agranda la imagen cuando se hace hover */
-}
-
-/* Hover-text */
-.hover-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.receta:hover .hover-text {
-    opacity: 1;  /* Muestra el texto cuando la receta tiene hover */
-}
-
-/* Botón */
-.btn-ver-receta {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    margin: 0 auto;
-    width: fit-content;
-    position: relative;
-    z-index: 1;
-}
-
-.receta:hover .btn-ver-receta {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.1);  /* Efecto en el botón */
-}
-
-/* Ajustes para dispositivos con 70% de visibilidad */
-.receta.show-hover img {
-    transform: scale(1.1);  /* Agranda la imagen cuando la receta es visible */
-}
-
-.receta.show-hover .hover-text {
-    opacity: 1;  /* Muestra el texto cuando la receta está en hover */
-}
-
-.receta.show-hover .btn-ver-receta {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.1);  /* Efecto en el botón */
-}
-
-/* Ajustes para dispositivos pequeños */
-@media (max-width: 768px) {
-    .receta {
-        width: 250px;  /* Reduce el tamaño de cada receta en pantallas pequeñas */
-        height: 350px;
+  /* Acerca de Nosotros */
+  .acerca-de-nosotros{
+      text-align: center; /* Centra el contenido */
+      margin: 20px 0; /* Espacio arriba y abajo */
     }
 
-    .receta img {
-        width: 100%;
-        height: auto;  /* Ajuste para que las imágenes se mantengan proporcionadas */
-    }
-}
-
-@media (max-width: 480px) {
-    .receta {
-        width: 200px;  /* Ajuste para pantallas aún más pequeñas */
-        height: 300px;
+  .nuestros-valores{
+      text-align: center; /* Centra el contenido */
+      margin: 0 auto; /* Centra el contenido */
+      max-width: 650px; /* Ancho máximo del contenido */
+      margin-top: -3%;
     }
 
-    .receta img {
-        width: 100%;
-        height: auto;
+  /* Acerca del Pistacho */
+  .acerca-del-pistacho{
+      text-align: center; /* Centra el contenido */
+      margin: 20px 0; /* Espacio arriba y abajo */
     }
 
-    .hover-text {
-        font-size: 18px;  /* Ajusta el tamaño de la fuente para pantallas pequeñas */
-        padding: 5px;
+  .historia-del-pistacho{
+      text-align: center; /* Centra el contenido */
+      margin: 0 auto; /* Centra el contenido */
+      max-width: 650px; /* Ancho máximo del contenido */
+      margin-top: 0%;
     }
 
-    .btn-ver-receta {
-        font-size: 14px;  /* Reduce el tamaño del texto en el botón */
-        padding: 8px 16px;  /* Ajusta el tamaño del botón */
+  .propiedades-del-pistacho{
+      text-align: center; /* Centra el contenido */
+      margin: 0 auto; /* Centra el contenido */
+      max-width: 650px; /* Ancho máximo del contenido */
+      margin-top: 0%;
     }
-}
 
+  .beneficios-del-pistacho{
+      text-align: center; /* Centra el contenido */
+      margin: 0 auto; /* Centra el contenido */
+      max-width: 650px; /* Ancho máximo del contenido */
+      margin-top: 2%;
+    }
 
+    /* Recetas */
+  .recetas-container {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 20px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+  }
 
+  .recetas-container::-webkit-scrollbar {
+      display: none;
+  }
 
+  .recetas {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      flex-wrap: nowrap;
+  }
 
+  .receta {
+      position: relative;
+      width: 300px;  /* Tamaño base para pantallas grandes */
+      height: 400px;
+      text-align: center;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+  }
 
+  /* Ajuste de tamaño de imagen */
+  .receta img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+  }
+
+  /* Efecto hover para dispositivos con mouse */
+  .receta:hover img {
+      transform: scale(1.1);  /* Agranda la imagen cuando se hace hover */
+  }
+
+  /* Hover-text */
+  .hover-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+
+  .receta:hover .hover-text {
+      opacity: 1;  /* Muestra el texto cuando la receta tiene hover */
+  }
+
+  /* Botón */
+  .btn-ver-receta {
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      margin: 0 auto;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+  }
+
+  .receta:hover .btn-ver-receta {
+      opacity: 1;
+      transform: translateY(-10px) scale(1.1);  /* Efecto en el botón */
+  }
+
+  /* Ajustes para dispositivos pequeños */
+  @media (max-width: 768px) {
+      .receta {
+          width: 250px;  /* Reduce el tamaño de cada receta en pantallas pequeñas */
+          height: 350px;
+      }
+
+      .receta img {
+          width: 100%;
+          height: auto;  /* Ajuste para que las imágenes se mantengan proporcionadas */
+      }
+  }
+
+  @media (max-width: 480px) {
+      .receta {
+          width: 200px;  /* Ajuste para pantallas aún más pequeñas */
+          height: 300px;
+      }
+
+      .receta img {
+          width: 100%;
+          height: auto;
+      }
+
+      .hover-text {
+          font-size: 18px;  /* Ajusta el tamaño de la fuente para pantallas pequeñas */
+          padding: 5px;
+      }
+
+      .btn-ver-receta {
+          font-size: 14px;  /* Reduce el tamaño del texto en el botón */
+          padding: 8px 16px;  /* Ajusta el tamaño del botón */
+      }
+  }
 
     /* Pagina de Venta */
     .PaginaVenta {
@@ -368,26 +455,7 @@
     cursor: pointer; /* Cambia el cursor al pasar por encima */
     transition: transform 0.3s ease, background-color 0.3s ease; /* Animación suave */
   }
-
-  .order-button:hover {
-    transform: scale(1.1); /* Zoom al pasar el mouse */
-    background-color: #333; /* Fondo gris oscuro al hacer hover */
-  }
-
-  .receta.hover img {
-    transform: scale(1.1); /* Zoom de la imagen */
-  }
-
-  .receta.hover .hover-text {
-    opacity: 1; /* Muestra el texto al hacer hover */
-  }
-
-  .receta.hover .btn-ver-receta {
-    opacity: 1; /* Muestra el botón */
-    transform: translateY(-10px); /* Pequeño movimiento hacia arriba */
-  }
-
-
+  
   /* Footer */
     .footer {
     background-color: #FFFFFF; /* Color de fondo */
@@ -407,7 +475,7 @@
   .footer .social-icons {
     display: flex; /* Alinea las imágenes en una fila */
     justify-content: center; /* Centra las imágenes */
-    gap: 20px; /* Espacio entre las imágenes */
+    gap: 150px; /* Espacio entre las imágenes */
   }
 
   .footer img {

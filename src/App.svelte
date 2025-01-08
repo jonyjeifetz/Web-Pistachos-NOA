@@ -251,7 +251,13 @@
           font-size: 24px; /* Tamaño más pequeño para pantallas móviles */
           line-height: 1.2; /* Ajuste del interlineado para evitar exceso de espacio */
           margin-bottom: 5px; /* Menos espacio debajo del título */
+          font-weight: bold; /* Hacer que el título sea en negrita */
       }
+      .cuerpo h3 {
+        font-size: 18px; /* Tamaño más pequeño para h3 en pantallas móviles */
+        line-height: 1.3; /* Ajuste del interlineado para h3 */
+        margin-bottom: 5px; /* Ajuste del espacio debajo de h3 */
+    }
   }
 
   .cuerpo p {

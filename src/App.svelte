@@ -63,34 +63,27 @@
   // Detectar si el dispositivo es táctil
   var isTouchDevice = 'ontouchstart' in document.documentElement;
 
-  // Activar automáticamente los hovers en dispositivos táctiles
+  // Aplicar hover de inmediato en dispositivos táctiles
   if (isTouchDevice) {
     recetas.forEach((receta) => {
       receta.classList.add("show-hover");  // Agregar la clase .show-hover de inmediato
-    });
-  } else {
-    // No táctil, solo activar hover con el ratón
-    recetas.forEach((receta) => {
-      receta.addEventListener("mouseenter", () => {
-        // Activar hover para la receta con el ratón
-        receta.classList.add("mouse-hover");
-      });
-
-      receta.addEventListener("mouseleave", () => {
-        // Desactivar hover cuando el ratón salga de la receta
-        receta.classList.remove("mouse-hover");
-      });
-    });
-  }
-
-  // Agregar eventos táctiles para simular el hover en dispositivos sin mouse
-  if (isTouchDevice) {
-    recetas.forEach((receta) => {
+      // Eliminar la clase .show-hover al tocar el elemento
       receta.addEventListener('touchstart', () => {
         receta.classList.add("show-hover");
       });
-
       receta.addEventListener('touchend', () => {
+        receta.classList.remove("show-hover");
+      });
+    });
+  } else {
+    // Para dispositivos con mouse, activar el hover con el ratón
+    recetas.forEach((receta) => {
+      receta.addEventListener("mouseenter", () => {
+        // Agregar clase para el hover del ratón
+        receta.classList.add("show-hover");
+      });
+      receta.addEventListener("mouseleave", () => {
+        // Eliminar clase de hover cuando el ratón salga
         receta.classList.remove("show-hover");
       });
     });

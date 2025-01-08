@@ -86,7 +86,6 @@
       <div class="acerca-de-nosotros">
         <h1>Acerca de Nosotros</h1>
         <div class="nuestros-valores">
-          <br>
           <h3>Nuestros valores</h3>
           <p style="text-align: left; margin-top: -3%"><strong style="text-decoration: underline;">Compromiso:</strong> Construimos relaciones de largo plazo con nuestros colaboradores, clientes, proveedores y todas las partes interesadas.
           <br>
@@ -259,46 +258,72 @@
     height: auto; /* Mantiene la relación de aspecto */
   }
 
-
   /* Acerca de Nosotros */
-  .acerca-de-nosotros{
-      text-align: center; /* Centra el contenido */
-      margin: 20px 0; /* Espacio arriba y abajo */
-    }
+  .acerca-de-nosotros {
+    text-align: center; /* Centra el contenido */
+    margin: 20px 0; /* Espacio arriba y abajo */
+}
 
-  .nuestros-valores{
-      text-align: center; /* Centra el contenido */
-      margin: 0 auto; /* Centra el contenido */
-      max-width: 650px; /* Ancho máximo del contenido */
-      margin-top: -3%;
-    }
+.nuestros-valores {
+    text-align: center; /* Centra el contenido */
+    margin: 0 auto; /* Centra el contenido */
+    max-width: 650px; /* Ancho máximo del contenido */
+}
+
+.acerca-de-nosotros h1 {
+    margin-bottom: 10px; /* Reduce la distancia entre el título principal y el siguiente contenido */
+}
+
+.nuestros-valores h3 {
+    margin-top: 20px; /* Espaciado uniforme antes del subtítulo */
+    margin-bottom: 15px; /* Espaciado uniforme después del subtítulo */
+}
+
+.nuestros-valores p {
+    text-align: left; /* Alinea el texto a la izquierda */
+    margin-top: 0; /* Evita espacio adicional antes del contenido */
+    margin-bottom: 20px; /* Espaciado uniforme después del contenido */
+}
+
+.nuestros-valores strong {
+    text-decoration: underline; /* Mantiene el subrayado para destacar los valores */
+    font-weight: bold; /* Asegura que el texto sea negrita */
+}
+
+
 
   /* Acerca del Pistacho */
-  .acerca-del-pistacho{
-      text-align: center; /* Centra el contenido */
-      margin: 20px 0; /* Espacio arriba y abajo */
-    }
+  .acerca-del-pistacho {
+    text-align: center; /* Centra el contenido */
+    margin: 20px 0; /* Espacio arriba y abajo */
+  }
 
-  .historia-del-pistacho{
+  .historia-del-pistacho,
+  .propiedades-del-pistacho,
+  .beneficios-del-pistacho {
       text-align: center; /* Centra el contenido */
       margin: 0 auto; /* Centra el contenido */
       max-width: 650px; /* Ancho máximo del contenido */
-      margin-top: 0%;
-    }
+  }
 
-  .propiedades-del-pistacho{
-      text-align: center; /* Centra el contenido */
-      margin: 0 auto; /* Centra el contenido */
-      max-width: 650px; /* Ancho máximo del contenido */
-      margin-top: 0%;
-    }
+  .acerca-del-pistacho h1 {
+      margin-bottom: 20px; /* Espaciado uniforme después del título principal */
+  }
 
-  .beneficios-del-pistacho{
-      text-align: center; /* Centra el contenido */
-      margin: 0 auto; /* Centra el contenido */
-      max-width: 650px; /* Ancho máximo del contenido */
-      margin-top: 2%;
-    }
+  .historia-del-pistacho h3,
+  .propiedades-del-pistacho h3,
+  .beneficios-del-pistacho h3 {
+      margin-top: 30px; /* Espaciado uniforme antes de los subtítulos */
+      margin-bottom: 15px; /* Espaciado uniforme después de los subtítulos */
+  }
+
+  .historia-del-pistacho p,
+  .propiedades-del-pistacho p,
+  .propiedades-del-pistacho ul,
+  .beneficios-del-pistacho ul {
+      margin-top: 0; /* Evita espacio adicional antes del contenido */
+      margin-bottom: 20px; /* Espaciado uniforme después del contenido */
+  }
 
     /* Recetas */
   .recetas-container {

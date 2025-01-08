@@ -23,71 +23,6 @@
     instagramLink.href = "https://www.instagram.com/pistachosriojanos";
     gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage;
   }
-
-  // Activar la clase .show-hover cuando las recetas son completamente visibles
-  const recetas = document.querySelectorAll(".receta");
-
-  // Observador de intersección
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
-          // Agrega la clase .show-hover si el 70% del elemento es visible
-          entry.target.classList.add("show-hover");
-        } else {
-          // Elimina la clase .show-hover si menos del 70% es visible
-          entry.target.classList.remove("show-hover");
-        }
-      });
-    },
-    {
-      threshold: [0.7] // Detecta cuando al menos el 70% del elemento es visible
-    }
-  );
-
-  // Observar cada receta
-  recetas.forEach((receta) => observer.observe(receta));
-
-  // Alternar manualmente fullscreen en click
-  recetas.forEach((receta) => {
-    receta.addEventListener("click", () => {
-      const isFullscreen = receta.classList.contains("fullscreen");
-      // Alternar entre fullscreen y posición original
-      receta.classList.toggle("fullscreen");
-
-      // Deshabilitar scroll en el fondo cuando una receta esté en fullscreen
-      document.body.style.overflow = isFullscreen ? "auto" : "hidden";
-    });
-  });
-
-  // Detectar si el dispositivo es táctil
-  var isTouchDevice = 'ontouchstart' in document.documentElement;
-
-  // Aplicar hover de inmediato en dispositivos táctiles
-  if (isTouchDevice) {
-    recetas.forEach((receta) => {
-      receta.classList.add("show-hover");  // Agregar la clase .show-hover de inmediato
-      // Eliminar la clase .show-hover al tocar el elemento
-      receta.addEventListener('touchstart', () => {
-        receta.classList.add("show-hover");
-      });
-      receta.addEventListener('touchend', () => {
-        receta.classList.remove("show-hover");
-      });
-    });
-  } else {
-    // Para dispositivos con mouse, activar el hover con el ratón
-    recetas.forEach((receta) => {
-      receta.addEventListener("mouseenter", () => {
-        // Agregar clase para el hover del ratón
-        receta.classList.add("show-hover");
-      });
-      receta.addEventListener("mouseleave", () => {
-        // Eliminar clase de hover cuando el ratón salga
-        receta.classList.remove("show-hover");
-      });
-    });
-  }
 };
 </script>
 
@@ -175,31 +110,31 @@
           <div class="receta">
             <img src="./images/Brownie de Pistacho.jpeg" alt="Brownie de Pistacho" />
             <div class="hover-text">Brownie de Pistacho</div>
-            <a href="https://drive.google.com/file/d/1ASjwHNIaNYszFCMRZSmtb848PJkgLRZg/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+            <a href="./Recetas/Receta Brownie de Pistacho.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
           </div>
           <!-- Receta 2 -->
           <div class="receta">
             <img src="./images/Baklava.jpeg" alt="Baklava" />
             <div class="hover-text">Baklava de Pistacho</div>
-            <a href="https://drive.google.com/file/d/1r3VQnVpUyxmnwXWGs8SemCGaLiBKmScE/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+            <a href="./Recetas/Receta Baklava de Pistacho.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
           </div>
           <!-- Receta 3 -->
           <div class="receta">
             <img src="./images/Queso.jpeg" alt="Queso" />
             <div class="hover-text">Queso con Pistacho</div>
-            <a href="https://drive.google.com/file/d/1qWyoHTN51e4i0o8e8_FapCsSJhkCUc9t/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+            <a href="./Recetas/Receta Queso de Pistacho.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
           </div>
           <!-- Receta 4 -->
           <div class="receta">
             <img src="./images/Crema de Pistacho.jpeg" alt="Crema de Pistacho" />
             <div class="hover-text">Crema de Pistacho</div>
-            <a href="https://drive.google.com/file/d/1EaWcLLZRK1M0UEYfJ9T_Xm8azDYD8pAA/view?usp=sharing" target="_blank" class="btn-ver-receta" >Ver receta</a>
+            <a href="./Recetas/Receta Crema Pistacho.pdf" target="_blank" class="btn-ver-receta" >Ver receta</a>
           </div>
           <!-- Receta 5 -->
           <div class="receta">
             <img src="./images/Trufas.jpeg" alt="Trufas de Pistacho" />
             <div class="hover-text">Trufas de Pistacho, Palta y Chocolate</div>
-            <a href="https://drive.google.com/file/d/166AyeBcA_4nVvagtlAALTjaTE_pYXHzF/view?usp=sharing" target="_blank" class="btn-ver-receta">Ver receta</a>
+            <a href="./Recetas/Receta Trufas de Pistacho, Palta y Chocolate.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
           </div> 
         </div>
       </div>

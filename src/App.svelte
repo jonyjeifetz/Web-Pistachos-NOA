@@ -60,8 +60,11 @@
       });
     });
 
+    // Detectar si el dispositivo es táctil
+    var isTouchDevice = 'ontouchstart' in document.documentElement;
+
     // Activar automáticamente los hovers en dispositivos táctiles
-    if (isMobile) {
+    if (isTouchDevice) {
       recetas.forEach((receta) => {
         receta.classList.add("show-hover");
       });
@@ -80,6 +83,19 @@
           receta.classList.remove("mouse-hover");
         });
       });
+    }
+
+    // Agregar eventos táctiles para simular el hover en dispositivos sin mouse
+    if (isTouchDevice) {
+        recetas.forEach((receta) => {
+            receta.addEventListener('touchstart', () => {
+                receta.classList.add("show-hover");
+            });
+
+            receta.addEventListener('touchend', () => {
+                receta.classList.remove("show-hover");
+            });
+        });
     }
 };
 </script>
@@ -499,6 +515,9 @@
       transform: scale(1.1); /* Efecto hover manual */
   }
 
+  .receta.show-hover img {
+    transform: scale(1.1);  /* Agranda la imagen cuando se activa el hover */
+}
   
   /* Footer */
     .footer {

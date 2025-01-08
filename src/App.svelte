@@ -444,12 +444,27 @@
     display: flex; /* Alinea las imágenes en una fila */
     justify-content: center; /* Centra las imágenes */
     gap: 150px; /* Espacio entre las imágenes */
+    flex-wrap: wrap; /* Permite que las imágenes pasen a la siguiente línea si no caben */
+    margin: 0 auto; /* Centrado horizontal */
+    padding: 1rem; /* Espaciado interno opcional */
   }
 
   .footer img {
-    max-width: 50px; /* Ajusta el tamaño de las imágenes */
-    height: auto; /* Mantiene la relación de aspecto */
+      max-width: 50px; /* Ajusta el tamaño de las imágenes */
+      height: auto; /* Mantiene la relación de aspecto */
   }
+
+  /* Estilos para dispositivos móviles */
+  @media (max-width: 600px) {
+      .footer .social-icons {
+          gap: 1rem; /* Reduce el espacio entre las imágenes */
+      }
+
+      .footer img {
+          max-width: 30px; /* Reduce el tamaño de las imágenes */
+      }
+  }
+
 
   /* Estilo del texto de copyright */
   .footer-copy {

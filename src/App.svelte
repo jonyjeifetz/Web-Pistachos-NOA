@@ -248,14 +248,14 @@
 
   @media (max-width: 768px) {
     .cuerpo h1 {
-        font-size: 28px; /* Tamaño ajustado para pantallas móviles */
+        font-size: 32px; /* Tamaño ajustado para pantallas móviles */
         line-height: 1.2; /* Ajuste del interlineado para evitar exceso de espacio */
         margin-bottom: 5px; /* Menos espacio debajo del título */
         font-weight: bold; /* Hacer que el título sea en negrita */
     }
 
     .cuerpo h3 {
-        font-size: 22px; /* Tamaño ajustado para h3 en pantallas móviles */
+        font-size: 26px; /* Tamaño ajustado para h3 en pantallas móviles */
         line-height: 1.3; /* Ajuste del interlineado para h3 */
         margin-bottom: 5px; /* Ajuste del espacio debajo de h3 */
     }

@@ -66,7 +66,22 @@
         receta.classList.add("show-hover");
       });
     }
-  };
+
+    // Activar hover solo cuando la receta sea visible al 70% o más y desactivar el hover en otras imágenes
+    if (!isMobile) {
+      recetas.forEach((receta) => {
+        receta.addEventListener("mouseenter", () => {
+          // Activar hover para la receta con el ratón
+          receta.classList.add("mouse-hover");
+        });
+
+        receta.addEventListener("mouseleave", () => {
+          // Desactivar hover cuando el ratón salga de la receta
+          receta.classList.remove("mouse-hover");
+        });
+      });
+    }
+};
 </script>
 
 <!-- Codigo HTML -->
@@ -344,7 +359,7 @@
       margin-bottom: 20px; /* Espaciado uniforme después del contenido */
   }
 
-    /* Recetas */
+  /* Recetas */
   .recetas-container {
       display: flex;
       justify-content: flex-start;
@@ -446,6 +461,7 @@
       }
   }
 
+  /* Ajustes para dispositivos aún más pequeños */
   @media (max-width: 480px) {
       .receta {
           width: 200px;  /* Ajuste para pantallas aún más pequeñas */
@@ -467,6 +483,22 @@
           padding: 8px 16px;  /* Ajusta el tamaño del botón */
       }
   }
+
+  /* Efecto hover automático para imágenes en dispositivos táctiles con 70% de visibilidad */
+  .receta img {
+      transition: transform 0.3s ease;
+  }
+
+  /* Hover automático para dispositivos táctiles, cuando la imagen es visible al 70% */
+  .receta.hover img {
+      transform: scale(1.1); /* Agranda la imagen cuando está al 70% visible */
+  }
+
+  /* Efecto hover en dispositivos con mouse */
+  .receta.mouse-hover:hover img {
+      transform: scale(1.1); /* Efecto hover manual */
+  }
+
   
   /* Footer */
     .footer {

@@ -240,6 +240,20 @@
     color: #FFFFFF;
   }
 
+  /* Ajustes generales para los h1 en pantallas grandes */
+  .cuerpo h1 {
+      font-size: 36px; /* Tamaño de fuente por defecto */
+      margin-bottom: 10px; /* Espacio debajo del título */
+  }
+
+  @media (max-width: 768px) {
+      .cuerpo h1 {
+          font-size: 24px; /* Tamaño más pequeño para pantallas móviles */
+          line-height: 1.2; /* Ajuste del interlineado para evitar exceso de espacio */
+          margin-bottom: 5px; /* Menos espacio debajo del título */
+      }
+  }
+
   .cuerpo p {
     font-family: roboto;
     color: #FFFFFF;
@@ -262,35 +276,33 @@
   .acerca-de-nosotros {
     text-align: center; /* Centra el contenido */
     margin: 20px 0; /* Espacio arriba y abajo */
-}
+  }
 
-.nuestros-valores {
-    text-align: center; /* Centra el contenido */
-    margin: 0 auto; /* Centra el contenido */
-    max-width: 650px; /* Ancho máximo del contenido */
-}
+  .nuestros-valores {
+      text-align: center; /* Centra el contenido */
+      margin: 0 auto; /* Centra el contenido */
+      max-width: 650px; /* Ancho máximo del contenido */
+  }
 
-.acerca-de-nosotros h1 {
-    margin-bottom: 10px; /* Reduce la distancia entre el título principal y el siguiente contenido */
-}
+  .acerca-de-nosotros h1 {
+      margin-bottom: 10px; /* Reduce la distancia entre el título principal y el siguiente contenido */
+  }
 
-.nuestros-valores h3 {
-    margin-top: 20px; /* Espaciado uniforme antes del subtítulo */
-    margin-bottom: 15px; /* Espaciado uniforme después del subtítulo */
-}
+  .nuestros-valores h3 {
+      margin-top: 20px; /* Espaciado uniforme antes del subtítulo */
+      margin-bottom: 15px; /* Espaciado uniforme después del subtítulo */
+  }
 
-.nuestros-valores p {
-    text-align: left; /* Alinea el texto a la izquierda */
-    margin-top: 0; /* Evita espacio adicional antes del contenido */
-    margin-bottom: 20px; /* Espaciado uniforme después del contenido */
-}
+  .nuestros-valores p {
+      text-align: left; /* Alinea el texto a la izquierda */
+      margin-top: 0; /* Evita espacio adicional antes del contenido */
+      margin-bottom: 20px; /* Espaciado uniforme después del contenido */
+  }
 
-.nuestros-valores strong {
-    text-decoration: underline; /* Mantiene el subrayado para destacar los valores */
-    font-weight: bold; /* Asegura que el texto sea negrita */
-}
-
-
+  .nuestros-valores strong {
+      text-decoration: underline; /* Mantiene el subrayado para destacar los valores */
+      font-weight: bold; /* Asegura que el texto sea negrita */
+  }
 
   /* Acerca del Pistacho */
   .acerca-del-pistacho {

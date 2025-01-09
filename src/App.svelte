@@ -59,11 +59,12 @@ let menuVisible = false;
         src="./images/Logo-Pistachos.png"
         alt="Logo-Pistachos-Riojanos" 
       />
-       <!-- Botón de menú en dispositivos pequeños -->
-      <button class="menu-btn" on:click={toggleMenu}>
-      ☰
+    </div> 
+    
+     <!-- Botón de menú en dispositivos pequeños -->
+     <button class="menu-btn" on:click={toggleMenu}>
+        ☰
       </button>
-    </div>     
 
     <Router>
       <!-- Menú de navegación -->

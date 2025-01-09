@@ -247,7 +247,7 @@ let menuAbierto = false;
 
   /* PRUEBAS DE MENU CON BOTON */
 
-/* Asegurarse de que el contenedor del menú sea un contenedor de bloque */
+/* Menú Horizontal: Centrado */
 .menu-horizontal .menu-list1 {
   display: flex;             /* Establece un contenedor flexible */
   justify-content: center;   /* Centra los elementos horizontalmente */
@@ -255,7 +255,8 @@ let menuAbierto = false;
   padding: 0;                /* Elimina el relleno predeterminado */
   margin: 0;                 /* Elimina el margen predeterminado */
   list-style: none;          /* Elimina los puntos de lista predeterminados */
-  left: -80%;
+  position: relative;
+  left: 0;                   /* Se eliminó el -80% */
 }
 
 .menu-horizontal .menu-list1 .menu-item {
@@ -284,32 +285,42 @@ let menuAbierto = false;
   font-weight: bold; /* Poner en negrita al pasar el mouse */
 }
 
-/* Corregir el color de la sección "Inicio" para la primera lista también */
-.menu .menu-list .menu-item:first-child a {
-  color: #FFFFFF; /* Blanco para la sección "Inicio" */
-  font-weight: normal;
-  text-decoration: none;
+/* Menú Vertical: Alineado a la izquierda */
+.menu .menu-list {
+  list-style: none;           /* Elimina los puntos de lista */
+  padding: 0;                 /* Elimina el relleno predeterminado */
+  margin: 0;                  /* Elimina márgenes predeterminados */
+  display: block;             /* Asegura que la lista sea bloque */
+  position: absolute;         /* Alineado de manera absoluta */
+  left: 0;                    /* Lo coloca a la izquierda */
+  top: 0;                     /* Lo coloca en la parte superior */
+  background-color: #222222;  /* Fondo oscuro para el menú */
+  padding: 20px;              /* Espaciado interior */
 }
 
-.menu .menu-list .menu-item:first-child a:hover {
-  font-weight: bold; /* Poner en negrita al pasar el mouse */
+.menu .menu-item {
+  text-align: left;           /* Alineación a la izquierda de los elementos */
+  margin: 10px 0;             /* Espaciado entre los ítems */
 }
 
-/* Corregir el color de los enlaces en el resto del menú */
-.menu .menu-list .menu-item a {
-  color: #FFFFFF; /* Color blanco para todos los enlaces */
-  font-weight: normal;
-  text-decoration: none;
+.menu .menu-item a {
+  color: #FFFFFF;             /* Color blanco para los enlaces */
+  font-weight: normal;        /* No negrita por defecto */
+  text-decoration: none;      /* Sin subrayado */
+  display: block;             /* Hace que los enlaces ocupen todo el ancho */
+  padding: 10px 20px;         /* Padding para que los ítems sean más grandes */
 }
 
-.menu .menu-list .menu-item a:hover {
-  font-weight: bold; /* Poner en negrita al pasar el mouse */
+.menu .menu-item a:hover {
+  font-weight: bold;          /* Poner en negrita al pasar el mouse */
+  background-color: #333333;  /* Fondo gris oscuro al pasar el mouse */
 }
+
 
 
 
   /* Media query: dispositivos móviles (≤ 768px) */
-@media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
   .menu-button {
     display: block; /* Mostrar el botón para menú desplegable */
   }

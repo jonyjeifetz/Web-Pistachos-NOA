@@ -3,17 +3,84 @@
 
     <div class="nuestros-valores">
         <h3>Nuestros valores</h3>
-        <p style="text-align: left; margin-top: -3%"><strong style="text-decoration: underline;">Compromiso:</strong> Construimos relaciones de largo plazo con nuestros colaboradores, clientes, proveedores y todas las partes interesadas.
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Imagen -->
+            <img
+              src="./images/Compromiso.jpeg"
+              alt="Compromiso"
+              style="width: 40%; height: auto;" 
+            />
+            <!-- Texto -->
+            <p style="flex: 1; text-align: left; margin-top: 0; padding-left: 10px;">
+              <strong style="text-decoration: underline;">Compromiso:</strong> Construimos relaciones de largo plazo con nuestros colaboradores, clientes, proveedores y todas las partes interesadas.
+            </p>
+          </div>
         <br>
-        <strong style="text-decoration: underline;">Creatividad:</strong> Pensar, re pensar, co crear buscando mejores soluciones que nos permitan dar lo mejor de nosotros.
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-direction: row-reverse;">
+            <!-- Imagen -->
+            <img
+              src="./images/Creatividad.jpeg"
+              alt="Innovación"
+              style="width: 40%; height: auto;"  
+            />
+            <!-- Texto -->
+            <p style="flex: 1; text-align: left; margin-top: 0; padding-right: 10px;">
+              <strong style="text-decoration: underline;">Creatividad:</strong> Pensar, repensar, co-crear buscando mejores soluciones que nos permitan dar lo mejor de nosotros.
+            </p>
+          </div>
         <br>
-        <strong style="text-decoration: underline;">Transparencia:</strong> Comunicamos internamente las razones de nuestras acciones con el objetivo de crear conocimiento de manera colectiva y poder delegar la toma de decisiones. Recibimos positivamente toda retroalimentación de nuestros colaboradores.
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Imagen -->
+            <img
+              src="./images/Transparencia.jpeg"
+              alt="Transparencia"
+              style="width: 40%; height: auto;" 
+            />
+            <!-- Texto -->
+            <p style="flex: 1; text-align: left; margin-top: 0; padding-left: 10px;">
+              <strong style="text-decoration: underline;">Transparencia:</strong> Comunicamos internamente las razones de nuestras acciones con el objetivo de crear conocimiento de manera colectiva y poder delegar la toma de decisiones. Recibimos positivamente toda retroalimentación de nuestros colaboradores.
+            </p>
+          </div>
         <br>
-        <strong style="text-decoration: underline;">Sinergia:</strong> Contribuimos con el otro para la concreción de los objetivos y obtener resultados más positivos.
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Texto -->
+            <p style="flex: 1; text-align: left; margin-top: 0; padding-right: 10px;">
+              <strong style="text-decoration: underline;">Sinergia:</strong> Contribuimos con el otro para la concreción de los objetivos y obtener resultados más positivos.
+            </p>
+            <!-- Imagen -->
+            <img
+              src="./images/Sinergia.jpeg"
+              alt="Sinergia"
+              style="width: 40%; height: auto;"  
+            />
+          </div>
         <br>
-        <strong style="text-decoration: underline;">Convivencia Positiva:</strong> Mantenemos vínculos saludables y propiciamos la felicidad y el disfrute durante el desarrollo de la actividad laboral.
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Imagen -->
+            <img
+              src="./images/Convivencia Positiva.jpeg"
+              alt="Convivencia Positiva"
+              style="width: 40%; height: auto;"  
+            />
+            <!-- Texto -->
+            <p style="flex: 1; text-align: left; margin-top: 0; padding-left: 10px;">
+              <strong style="text-decoration: underline;">Convivencia Positiva:</strong> Mantenemos vínculos saludables y propiciamos la felicidad y el disfrute durante el desarrollo de la actividad laboral.
+            </p>
+          </div>
+          
         <br>
-        <strong style="text-decoration: underline;">Crecimiento y Desarrollo:</strong> Alentamos el crecimiento y desarrollo de todos nuestros colaboradores y clientes.</p>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Texto -->
+            <p style="flex: 1; text-align: left; margin-top: 0; padding-right: 10px;">
+                <strong style="text-decoration: underline;">Crecimiento y Desarrollo:</strong> Alentamos el crecimiento y desarrollo de todos nuestros colaboradores y clientes.
+            </p>
+            <!-- Imagen -->
+            <img 
+                src="./images/Crecimiento y Desarrollo.jpeg" 
+                alt="Crecimiento y Desarrollo"
+                style="width: 40%; height: auto;" 
+            />
+        </div>
     </div>
 </div>
 

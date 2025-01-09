@@ -1,98 +1,107 @@
 <!-- Codigo J-S -->
-
 <script>
-
   import { onMount } from "svelte";
+  import { Router, Route, Link } from 'svelte-routing';
+  import Inicio from './components/Inicio.svelte';
+  import AcercaDeNosotros from './components/AcercaDeNosotros.svelte';
+  import AcercaDelPistacho from './components/AcercaDelPistacho.svelte';
+  import UltimasNoticiasDelPistacho from './components/UltimasNoticiasDelPistacho.svelte';
+  import ResposabilidadSocialEmpresarial from './components/ResposabilidadSocialEmpresarial.svelte';
+  import NuestraGente from './components/NuestraGente.svelte';
 
+  // Redirige a la página de inicio si no es la página principal
   onMount(() => {
     if (window.location.pathname !== "/") {
       window.location.href = "/";
     }
+
+    // Establecer enlaces de WhatsApp, Instagram y Gmail según el dispositivo
+    const phoneNumber = "+5491127161950"; 
+    const prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
+    const encodedMessage = encodeURIComponent(prewrittenMessage);
+    const emailAddress = "info@pistachosriojanos.com"; 
+    
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    document.getElementById("whatsapp-link").href = isMobile ? 
+      `https://wa.me/${phoneNumber}?text=${encodedMessage}` : 
+      `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+    document.getElementById("instagram-link").href = isMobile ? 
+      "instagram://user?username=pistachosriojanos" : 
+      "https://www.instagram.com/pistachosriojanos";
+
+    document.getElementById("gmail-link").href = isMobile ? 
+      `mailto:${emailAddress}?subject=Mas Informacion&body=${encodedMessage}` : 
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=Mas%20Informacion&body=${encodedMessage}`;
   });
 
-  window.onload = function() {
-  // Número de teléfono para WhatsApp
-  var phoneNumber = "+5491127161950"; 
-  var prewrittenMessage = "¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.";
-  var encodedMessage = encodeURIComponent(prewrittenMessage);
-  var emailAddress = "info@pistachosriojanos.com"; 
-  
-  var instagramLink = document.getElementById("instagram-link");
-  var whatsappLink = document.getElementById("whatsapp-link");
-  var gmailLink = document.getElementById("gmail-link");
-  
-  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  
-  if (isMobile && !/iPad/i.test(navigator.userAgent)) {
-    whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
-    instagramLink.href = "instagram://user?username=pistachosriojanos";
-    gmailLink.href = "mailto:" + emailAddress + "?subject=Mas Informacion&body=" + encodedMessage;
-  } else {
-    whatsappLink.href = "https://web.whatsapp.com/send?phone=" + phoneNumber + "&text=" + encodedMessage;
-    instagramLink.href = "https://www.instagram.com/pistachosriojanos";
-    gmailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress + "&su=Mas%20Informacion&body=" + encodedMessage;
+  // Función para abrir y cerrar el menú
+  function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    if (menu) {
+      menu.classList.toggle('active'); // Cambié 'open' por 'active' según el CSS
+    }
   }
-};
 
-import { Router, Route, Link } from 'svelte-routing';
-import Inicio from './components/Inicio.svelte';
-import AcercaDeNosotros from './components/AcercaDeNosotros.svelte';
-import AcercaDelPistacho from './components/AcercaDelPistacho.svelte';
-import UltimasNoticiasDelPistacho from './components/UltimasNoticiasDelPistacho.svelte';
-import ResposabilidadSocialEmpresarial from './components/ResposabilidadSocialEmpresarial.svelte';
-import NuestraGente from './components/NuestraGente.svelte';
+  onMount(() => {
+    const menuButton = document.querySelector('.menu-button');
+    if (menuButton) {
+      menuButton.addEventListener('click', toggleMenu);
+    }
 
-let menuAbierto = false;
+    const closeBtn = document.querySelector('.close-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', toggleMenu);
+    }
 
-  const toggleMenu = () => {
-    menuAbierto = !menuAbierto;
-  };
-
+    const menuLinks = document.querySelectorAll('.menu ul li a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.menu').classList.remove('active');
+      });
+    });
+  });
 </script>
 
 <!-- Codigo HTML -->
-
 <body>
   <main>
     <!-- Header -->
     <div class="header"> 
-      <img
-        src="./images/Logo-Pistachos.png"
-        alt="Logo-Pistachos-Riojanos" 
-      />
+      <img src="./images/Logo-Pistachos.png" alt="Logo-Pistachos-Riojanos" />
     </div>  
-    
+
     <Router>
       <!-- Botón para menú desplegable (móviles) -->
-      <button class="menu-button" on:click={toggleMenu}>
-        ☰ Menú
-      </button>
+      <button class="menu-button" on:click={toggleMenu}>☰ Menú</button>
 
-      <!-- Menú desplegable (solo móviles) -->
-      {#if menuAbierto}
-        <nav class="menu">
-          <ul class="menu-list">
-            <li class="menu-item"><a href="#" on:click="{() => window.location.reload()}">Inicio</a></li>
-            <li class="menu-item"><Link class="menu-link" to="/acerca-de-nosotros"><a href="/acerca-de-nosotros">Acerca de Nosotros</a></Link></li>
-            <li class="menu-item"><Link class="menu-link" to="/acerca-del-pistacho"><a href="/acerca-del-pistacho">Acerca del Pistacho</a></Link></li>
-            <li class="menu-item"><Link class="menu-link" to="/ultimas-noticias-del-pistacho"><a href="/ultimas-noticias-del-pistacho">Ultimas Noticias del Pistacho</a></Link></li>
-            <li class="menu-item"><Link class="menu-link" to="/responsabilidad-social-empresarial"><a href="/responsabilidad-social-empresarial">Responsabilidad Social Empresarial</a></Link></li>
-            <li class="menu-item"><Link class="menu-link" to="/nuestra-gente"><a href="/nuestra-gente">Nuestra Gente</a></Link></li>
-          </ul>
-        </nav>
-      {/if}
-      <!-- Menú horizontal (solo escritorio) -->
+      <nav class="menu">
+        <!-- Botón de cerrar (X) -->
+        <button class="close-btn" on:click={toggleMenu}>X</button>
+        <ul class="menu-list">
+          <li class="menu-item"><a Inicio href="#" on:click="{() => window.location.reload()}">Inicio</a></li>
+          <li class="menu-item"><Link to="/acerca-de-nosotros" on:click={toggleMenu}><a>Acerca de Nosotros</a></Link></li>
+          <li class="menu-item"><Link to="/acerca-del-pistacho" on:click={toggleMenu}><a>Acerca del Pistacho</a></Link></li>
+          <li class="menu-item"><Link to="/ultimas-noticias-del-pistacho" on:click={toggleMenu}><a>Ultimas Noticias del Pistacho</a></Link></li>
+          <li class="menu-item"><Link to="/responsabilidad-social-empresarial" on:click={toggleMenu}><a>Responsabilidad Social Empresarial</a></Link></li>
+          <li class="menu-item"><Link to="/nuestra-gente" on:click={toggleMenu}><a>Nuestra Gente</a></Link></li>
+        </ul>
+      </nav>
+      
+      <!-- Menú horizontal -->
       <nav class="menu-horizontal">
         <ul class="menu-list1">
           <li class="menu-item"><a href="#" on:click="{() => window.location.reload()}">Inicio</a></li>
-          <li class="menu-item"><Link class="menu-link" to="/acerca-de-nosotros"><a href="/acerca-de-nosotros">Acerca de Nosotros</a></Link></li>
-          <li class="menu-item"><Link class="menu-link" to="/acerca-del-pistacho"><a href="/acerca-del-pistacho">Acerca del Pistacho</a></Link></li>
-          <li class="menu-item"><Link class="menu-link" to="/ultimas-noticias-del-pistacho"><a href="/ultimas-noticias-del-pistacho">Ultimas Noticias del Pistacho</a></Link></li>
-          <li class="menu-item"><Link class="menu-link" to="/responsabilidad-social-empresarial"><a href="/responsabilidad-social-empresarial">Responsabilidad Social Empresarial</a></Link></li>
-          <li class="menu-item"><Link class="menu-link" to="/nuestra-gente"><a href="/nuestra-gente">Nuestra Gente</a></Link></li>
+          <li class="menu-item"><Link to="/acerca-de-nosotros"><a>Acerca de Nosotros</a></Link></li>
+          <li class="menu-item"><Link to="/acerca-del-pistacho"><a>Acerca del Pistacho</a></Link></li>
+          <li class="menu-item"><Link to="/ultimas-noticias-del-pistacho"><a>Ultimas Noticias del Pistacho</a></Link></li>
+          <li class="menu-item"><Link to="/responsabilidad-social-empresarial"><a>Responsabilidad Social Empresarial</a></Link></li>
+          <li class="menu-item"><Link to="/nuestra-gente"><a>Nuestra Gente</a></Link></li>
         </ul>
       </nav>
-      <!-- Las rutas definidas -->
+
+      <!-- Rutas -->
       <Route path="/" component={Inicio} />
       <Route path="/acerca-de-nosotros" component={AcercaDeNosotros} />
       <Route path="/acerca-del-pistacho" component={AcercaDelPistacho} />
@@ -101,254 +110,197 @@ let menuAbierto = false;
       <Route path="/nuestra-gente" component={NuestraGente} />
     </Router>
 
+    <!-- Footer -->
     <div class="footer">
       <h4>¿Preguntas? ¡Estamos a un clic de distancia!</h4>
-    
       <div class="social-icons">
-        <a id="instagram-link" href="#" target="_blank">
-          <img src="./images/Instagram.png" alt="Instagram" />
-        </a>
-        <a id="whatsapp-link" href="#" target="_blank">
-          <img src="./images/What's App.png" alt="What's App" />
-        </a>
-        <a id="gmail-link" href="#" target="_blank">
-          <img src="./images/Gmail.png" alt="Gmail" />
-        </a>
+        <a id="instagram-link" href="#" target="_blank"><img src="./images/Instagram.png" alt="Instagram" /></a>
+        <a id="whatsapp-link" href="#" target="_blank"><img src="./images/What's App.png" alt="Whats App" /></a>
+        <a id="gmail-link" href="#" target="_blank"><img src="./images/Gmail.png" alt="Gmail" /></a>
       </div>
-    
       <div class="footer-copy">
         <p>© 2024 por Jonathan Jeifetz</p>
       </div>
-    </div> 
+    </div>
   </main>
 </body>
 
 <!-- Codigo CSS -->
-
 <style>
+/* Estilos generales */
+body {
+  background-color: #80A54D;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
 
-  /* Estilos para el menú */
-  nav {
-    background-color: rgb(0, 0, 0); /* Fondo negro */
-    padding: 10px; /* Espaciado interno */
-  }
+.header {
+  background-color: #FFFFFF;
+  padding: 20px 0;
+  text-align: center;
+}
 
-  nav ul {
-    list-style-type: none; /* Eliminar los puntos de la lista */
-    padding: 0;
-    margin: 0;
-    display: flex; /* Esto pone los elementos de la lista en una fila */
-    justify-content: center; /* Centra los elementos del menú */
-  }
+.header img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
-  nav li {
-    position: relative; /* Necesario para el pseudo-elemento */
-    margin-right: 20px; /* Espaciado entre los elementos del menú */
-  }
+.footer {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
 
-  nav li::after {
-    content: '|'; /* Agrega el separador */
-    position: absolute;
-    right: -10px; /* Ajusta la posición del separador */
-    color: white; /* Color del separador */
-    font-weight: bold;
-  }
+.footer h4 {
+  font-family: montserrat;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
 
-  nav li:last-child::after {
-    content: ''; /* Elimina el separador del último elemento */
-  }
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
 
-  nav ul li a {
-    color: white; /* Texto en blanco */
-    text-decoration: none; /* Sin subrayado */
-    font-size: 19px; /* Aumenta el tamaño de la fuente */
-  }
+.footer img {
+  max-width: 50px;
+  height: auto;
+}
 
-  nav ul li a:hover {
-    text-decoration: underline; /* Subrayado al pasar el ratón */
-  }
+.footer-copy {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
 
- /* Body */
-  body{
-    background-color:#80A54D; /* Color Pistacho */
-    font-family: Arial, sans-serif; /* Fuente básica */
-    margin: 0; /* Elimina el margen por defecto del body */
-    padding: 0; /* Elimina el relleno por defecto del body */
-    overflow-x: hidden; /* Evita el scroll horizontal */
-    width: 100%; /* Ajusta el ancho al 100% */
-  }
+/* Estilos para el menú */
+nav {
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+}
 
-  /* Header */
-  .header{
-    background-color: #FFFFFF; /* Color de fondo */
-    text-align: center; /* Centra el contenido */
-    position: relative;
-  }
+/* Menú por defecto, oculto en dispositivos pequeños */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
 
-  .header img {
-    max-width: 100%; /* Hace que la imagen no se salga del contenedor */
-    height: auto; /* Mantiene la relación de aspecto */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    display: block; /* Evita espacios extra en línea */
-  }
+nav li {
+  margin-right: 20px;
+}
 
-  /* Footer */
-  .footer {
-    background-color: #FFFFFF; /* Color de fondo */
-    display: flex; /* Alinea los elementos en columna */
-    flex-direction: column; /* Coloca los elementos en columna (título, imágenes, copyright) */
-    align-items: center; /* Centra los elementos horizontalmente */
-    padding: 20px 0; /* Añade espacio arriba y abajo */
-  }
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 19px;
+}
 
-  .footer h4 {
-    font-family: montserrat; /* Fuente del título */
-    text-align: center; /* Centra el texto */
-    margin-top: 0; /* Elimina el margen superior innecesario */
-    margin-bottom: 20px; /* Espacio entre el título y las imágenes */
-  }
+nav ul li a:hover {
+  text-decoration: underline;
+}
 
+/* Menú en dispositivos móviles */
+@media (max-width: 600px) {
   .footer .social-icons {
-    display: flex; /* Alinea las imágenes en una fila */
-    justify-content: center; /* Centra las imágenes */
-    align-items: center; /* Asegura la alineación vertical */
-    gap: 150px; /* Espacio entre las imágenes */
-    flex-wrap: wrap; /* Permite que las imágenes pasen a la siguiente línea si no caben */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 1rem; /* Espaciado interno opcional */
+    gap: 7rem;
   }
 
   .footer img {
-      max-width: 50px; /* Ajusta el tamaño de las imágenes */
-      height: auto; /* Mantiene la relación de aspecto */
-      display: block; /* Evita espacios extra en línea */
-      margin: 0; /* Asegura que no haya márgenes adicionales */
+    max-width: 30px;
   }
 
-  /* Estilos para dispositivos móviles */
-  @media (max-width: 600px) {
-      .footer .social-icons {
-          gap: 7rem; /* Reduce el espacio entre las imágenes */
-      }
-
-      .footer img {
-          max-width: 30px; /* Reduce el tamaño de las imágenes */
-      }
-  }
-
-
-  /* Estilo del texto de copyright */
-  .footer-copy {
-    margin-top: 20px; /* Espacio entre las imágenes y el copyright */
-    font-size: 14px; /* Tamaño de fuente */
-    color: #666; /* Color del texto */
-    text-align: center; /* Centra el texto */
-  }
-
-  /* PRUEBAS DE MENU CON BOTON */
-
-/* Menú Horizontal: Centrado */
-.menu-horizontal .menu-list1 {
-  display: flex;             /* Establece un contenedor flexible */
-  justify-content: center;   /* Centra los elementos horizontalmente */
-  align-items: center;       /* Centra los elementos verticalmente (si es necesario) */
-  padding: 0;                /* Elimina el relleno predeterminado */
-  margin: 0;                 /* Elimina el margen predeterminado */
-  list-style: none;          /* Elimina los puntos de lista predeterminados */
-  position: relative;
-  left: 0;                   /* Se eliminó el -80% */
-}
-
-.menu-horizontal .menu-list1 .menu-item {
-  margin: 0 15px;            /* Espacio entre los elementos del menú */
-}
-
-/* Corregir el color de la sección "Inicio" */
-.menu-horizontal .menu-list1 .menu-item:first-child a {
-  color: #FFFFFF; /* Blanco para la sección "Inicio" */
-  font-weight: normal;
-  text-decoration: none;
-}
-
-.menu-horizontal .menu-list1 .menu-item:first-child a:hover {
-  font-weight: bold; /* Poner en negrita al pasar el mouse */
-}
-
-/* Corregir el color de los enlaces en el resto del menú */
-.menu-horizontal .menu-list1 .menu-item a {
-  color: #FFFFFF; /* Color blanco para todos los enlaces */
-  font-weight: normal;
-  text-decoration: none;
-}
-
-.menu-horizontal .menu-list1 .menu-item a:hover {
-  font-weight: bold; /* Poner en negrita al pasar el mouse */
-}
-
-/* Menú Vertical: Alineado a la izquierda */
-.menu .menu-list {
-  list-style: none;           /* Elimina los puntos de lista */
-  padding: 0;                 /* Elimina el relleno predeterminado */
-  margin: 0;                  /* Elimina márgenes predeterminados */
-  display: block;             /* Asegura que la lista sea bloque */
-  position: absolute;         /* Alineado de manera absoluta */
-  left: 0;                    /* Lo coloca a la izquierda */
-  top: 0;                     /* Lo coloca en la parte superior */
-  background-color: #222222;  /* Fondo oscuro para el menú */
-  padding: 20px;              /* Espaciado interior */
-}
-
-.menu .menu-item {
-  text-align: left;           /* Alineación a la izquierda de los elementos */
-  margin: 10px 0;             /* Espaciado entre los ítems */
-}
-
-.menu .menu-item a {
-  color: #FFFFFF;             /* Color blanco para los enlaces */
-  font-weight: normal;        /* No negrita por defecto */
-  text-decoration: none;      /* Sin subrayado */
-  display: block;             /* Hace que los enlaces ocupen todo el ancho */
-  padding: 10px 20px;         /* Padding para que los ítems sean más grandes */
-}
-
-.menu .menu-item a:hover {
-  font-weight: bold;          /* Poner en negrita al pasar el mouse */
-  background-color: #333333;  /* Fondo gris oscuro al pasar el mouse */
-}
-
-
-
-
-  /* Media query: dispositivos móviles (≤ 768px) */
-  @media screen and (max-width: 768px) {
-  .menu-button {
-    display: block; /* Mostrar el botón para menú desplegable */
-  }
-
+  /* El menú desplegable inicialmente está oculto */
   .menu {
-    display: block; /* Mostrar el menú desplegable */
+    display: none;
+    position: absolute;
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Fondo oscuro para buen contraste */
+    text-align: center;
+    padding-top: 20px;
   }
 
-  .menu-horizontal {
-    display: none; /* Ocultar el menú horizontal */
+  .menu.active {
+    display: block;
   }
-}
 
-/* Media query: dispositivos grandes (> 768px) */
-@media screen and (min-width: 769px) {
+  .menu ul {
+    display: block;
+    padding: 0;
+  }
+
+  .menu ul li {
+    margin: 20px 0;
+  }
+
+  .menu ul li a {
+    color: white; /* Asegura que el texto sea blanco y visible */
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  .menu ul li a:hover {
+    color: #FFD700; /* Cambio de color al pasar el mouse */
+    text-decoration: underline;
+  }
+
   .menu-button {
-    display: none; /* Ocultar el botón para menú desplegable */
+    display: block;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
   }
 
-  .menu {
-    display: none; /* Ocultar el menú desplegable */
+  .close-btn {
+    display: block;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
   }
 
+  /* Mostrar el menú horizontal solo en dispositivos grandes */
   .menu-horizontal {
-    display: flex; /* Mostrar el menú horizontal */
+    display: none;  /* Aseguramos que no se muestre en dispositivos pequeños */
   }
 }
 
+@media (min-width: 601px) {
+  /* Mostrar el menú horizontal solo en pantallas grandes */
+  .menu-horizontal {
+    display: flex;
+    justify-content: space-around;
+  }
 
+  .menu-button {
+    display: none;
+  }
 
+  .menu-list1 {
+    display: flex;
+  }
+
+  /* Aseguramos que el menú desplegable no se muestre en pantallas grandes */
+  .menu {
+    display: none;
+  }
+}
 </style>

@@ -141,6 +141,7 @@ body {
   margin: 0 auto;
 }
 
+/* Estilo general para el footer */
 .footer {
   background-color: #FFFFFF;
   display: flex;
@@ -158,7 +159,7 @@ body {
 .footer .social-icons {
   display: flex;
   justify-content: center;
-  gap: 150px;
+  gap: 150px; /* Este es el espacio que quieres en las computadoras */
   flex-wrap: wrap;
   padding: 1rem;
 }
@@ -174,6 +175,24 @@ body {
   color: #666;
   text-align: center;
 }
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 600px) {
+  .footer .social-icons {
+    justify-content: center;  /* Centrado para móviles */
+    gap: 30px;  /* Reducido el espacio entre los iconos en móviles */
+  }
+
+  .footer img {
+    max-width: 40px;  /* Reducido el tamaño de los iconos en móviles */
+  }
+
+  /* Asegura que el título esté centrado en móviles */
+  .footer h4 {
+    text-align: center;
+  }
+}
+
 
 /* Estilos para el menú */
 nav {

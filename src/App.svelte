@@ -239,27 +239,6 @@ nav ul li a:hover {
   .menu.active {
     display: block;
   }
-}
-
-  .footer img {
-    max-width: 30px;
-  }
-
-  /* El menú desplegable inicialmente está oculto */
-  .menu {
-    display: none;
-    position: absolute;
-    top: 50px; 
-    left: 0;
-    width: 100%;
-    background-color: #333; /* Fondo oscuro para buen contraste */
-    text-align: center;
-    padding-top: 20px;
-  }
-
-  .menu.active {
-    display: block;
-  }
 
   .menu ul {
     display: block;
@@ -304,6 +283,15 @@ nav ul li a:hover {
     display: none;  /* Aseguramos que no se muestre en dispositivos pequeños */
   }
 
+  .menu-list1 {
+    display: flex;
+  }
+
+  /* Aseguramos que el menú desplegable no se muestre en pantallas grandes */
+  .menu {
+    display: none;
+  }
+}
 
 @media (min-width: 601px) {
   /* Mostrar el menú horizontal solo en pantallas grandes */

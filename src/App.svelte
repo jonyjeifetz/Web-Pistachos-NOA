@@ -232,7 +232,7 @@ nav ul li a:hover {
     background-color: #333;
     text-align: center;
     padding-top: 20px;
-    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+    z-index: 1000;
   }
 
   .menu.active {
@@ -242,6 +242,8 @@ nav ul li a:hover {
   .menu ul {
     display: block;
     padding: 0;
+    margin: 0;
+    list-style-type: none;
   }
 
   .menu ul li {
@@ -249,13 +251,13 @@ nav ul li a:hover {
   }
 
   .menu ul li a {
-    color: white; /* Asegura que el texto sea blanco y visible */
+    color: white;
     font-size: 20px;
     text-decoration: none;
   }
 
   .menu ul li a:hover {
-    color: #FFD700; /* Cambio de color al pasar el mouse */
+    color: #FFD700;
     text-decoration: underline;
   }
 
@@ -266,6 +268,7 @@ nav ul li a:hover {
     font-size: 30px;
     color: white;
     cursor: pointer;
+    margin: 10px;
   }
 
   .close-btn {
@@ -275,25 +278,17 @@ nav ul li a:hover {
     font-size: 30px;
     color: white;
     cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 10px;
   }
 
-  /* Mostrar el menú horizontal solo en dispositivos grandes */
   .menu-horizontal {
-    display: none;  /* Aseguramos que no se muestre en dispositivos pequeños */
-  }
-
-  .menu-list1 {
-    display: flex;
-  }
-
-  /* Aseguramos que el menú desplegable no se muestre en pantallas grandes */
-  .menu {
-    display: none;
+    display: none; /* Ocultar menú horizontal en móviles */
   }
 }
 
 @media (min-width: 601px) {
-  /* Mostrar el menú horizontal solo en pantallas grandes */
   .menu-horizontal {
     display: flex;
     justify-content: space-around;
@@ -307,9 +302,14 @@ nav ul li a:hover {
     display: flex;
   }
 
-  /* Aseguramos que el menú desplegable no se muestre en pantallas grandes */
   .menu {
-    display: none;
+    display: none !important; /* Asegura que no se muestre en pantallas grandes */
   }
+}
+.menu-list1 {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
 </style>

@@ -79,7 +79,6 @@
         </ul>
       </nav>
 
-      
       <!-- Menú horizontal -->
       <nav class="menu-horizontal">
         <ul class="menu-list1">

@@ -180,7 +180,7 @@ body {
 @media (max-width: 600px) {
   .footer .social-icons {
     justify-content: center;  /* Centrado para móviles */
-    gap: 30px;  /* Reducido el espacio entre los iconos en móviles */
+    gap: 45px;  /* Reducido el espacio entre los iconos en móviles */
   }
 
   .footer img {
@@ -192,7 +192,6 @@ body {
     text-align: center;
   }
 }
-
 
 /* Estilos para el menú */
 nav {

@@ -1,4 +1,3 @@
-<!-- Codigo J-S -->
 <script>
   import { onMount } from "svelte";
   import { Router, Route, Link } from 'svelte-routing';
@@ -18,7 +17,7 @@
 
   function cerrarMenu() {
     menuAbierto = false;
-    window.scrollTo(0, 0); 
+    // window.scrollTo(0, 0); // No es necesario si refrescamos la página
   }
 
   onMount(() => {
@@ -41,10 +40,11 @@
   });
 </script>
 
-<!-- Codigo HTML -->
 <main>
   <div class="header"> 
-    <img src="./images/Logo-Pistachos.png" alt="Logo-Pistachos-Riojanos" />
+    <a href="/">
+      <img src="./images/Logo-Pistachos.png" alt="Logo-Pistachos-Riojanos" />
+    </a>
   </div>  
 
   <Router>
@@ -60,7 +60,7 @@
       {#if menuAbierto}
         <div class="menu-mobile" transition:slide>
           <ul class="menu-list-vertical">
-            <li><Link to="/" on:click={cerrarMenu}>Inicio</Link></li>
+            <li><a href="/" on:click={cerrarMenu}>Inicio</a></li>
             <li><Link to="/acerca-de-nosotros" on:click={cerrarMenu}>Acerca de Nosotros</Link></li>
             <li><Link to="/acerca-del-pistacho" on:click={cerrarMenu}>Acerca del Pistacho</Link></li>
             <li><Link to="/ultimas-noticias-del-pistacho" on:click={cerrarMenu}>Últimas Noticias</Link></li>
@@ -72,7 +72,7 @@
 
       <div class="menu-horizontal">
         <ul class="menu-list-horizontal">
-          <li><Link to="/" on:click={() => window.scrollTo(0,0)}>INICIO</Link></li>
+          <li><a href="/">INICIO</a></li>
           <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
           <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
           <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
@@ -105,7 +105,6 @@
   </div>
 </main>
 
-<!-- Codigo CSS -->
 <style>
   /* --- BASE --- */
   :global(body) {
@@ -120,17 +119,22 @@
     padding: 20px 0;
     text-align: center;
   }
+
+  .header a {
+    display: inline-block;
+    text-decoration: none;
+  }
   
   .nav-container {
     position: relative;
     z-index: 1000;
   }
 
-  /* --- MENU DESKTOP OPTIMIZADO PARA PANTALLAS GRANDES --- */
+  /* --- MENU DESKTOP OPTIMIZADO --- */
   .menu-horizontal {
     display: none;
     background-color: #000; 
-    padding: 25px 0; /* Más altura para dar presencia */
+    padding: 25px 0;
   }
 
   .menu-list-horizontal {
@@ -138,16 +142,17 @@
     list-style: none;
     margin: 0 auto;
     padding: 0 20px;
-    justify-content: space-between; /* Distribuye a lo largo de todo el ancho */
+    justify-content: space-between;
     align-items: center;
-    width: 95%; /* Ocupa casi todo el ancho de la pantalla */
-    max-width: 1500px; /* Aumentado para que no se vea chico en el centro */
+    width: 95%;
+    max-width: 1500px;
   }
 
-  :global(.menu-list-horizontal a) {
+  /* Estilo para Link y para el <a> de Inicio */
+  :global(.menu-list-horizontal a), .menu-list-horizontal li a {
     color: white;
     text-decoration: none;
-    font-size: 18px; /* Letra más grande y visible */
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -155,9 +160,9 @@
     padding: 5px 10px;
   }
 
-  :global(.menu-list-horizontal a:hover) {
+  :global(.menu-list-horizontal a:hover), .menu-list-horizontal li a:hover {
     color: #80A54D;
-    transform: scale(1.05); /* Efecto visual de resaltado */
+    transform: scale(1.05);
   }
 
   /* --- MENU MÓVIL --- */
@@ -180,7 +185,7 @@
     width: 100%;
   }
 
-  :global(.menu-list-vertical a) {
+  :global(.menu-list-vertical a), .menu-list-vertical li a {
     display: block;
     color: white;
     padding: 20px;
@@ -190,7 +195,7 @@
   }
 
   /* --- RESPONSIVE / BREAKPOINT --- */
-  @media (min-width: 1150px) { /* Ajustado para que el texto largo no choque */
+  @media (min-width: 1150px) {
     .menu-button {
       display: none;
     }
@@ -202,7 +207,7 @@
     }
   }
 
-/* --- FOOTER --- */
+  /* --- FOOTER --- */
   .footer { 
     background-color: #FFFFFF; 
     display: flex; 
@@ -221,27 +226,26 @@
     max-width: 45px; 
   }
 
-  /* Ajustes específicos solo para celulares */
   @media (max-width: 768px) {
     .footer {
-      padding: 40px 20px; /* Evita que el texto toque los bordes */
-      text-align: center;   /* Centra el h4 y el p */
+      padding: 40px 20px;
+      text-align: center;
     }
 
     .footer h4 {
-      margin: 0 0 25px 0;  /* Separa el título de los iconos */
+      margin: 0 0 25px 0;
       width: 100%;
-      line-height: 1.4;    /* Mejora la lectura si el texto se divide en dos líneas */
+      line-height: 1.4;
     }
 
     .footer .social-icons {
-      gap: 60px;           /* Los separamos más en móvil para que queden "más lindos" */
+      gap: 60px;
       padding: 20px 0;
       justify-content: center;
     }
 
     .footer img {
-      max-width: 55px;     /* Los hacemos un poquito más grandes para que sean fáciles de tocar */
+      max-width: 55px;
     }
   }
 </style>

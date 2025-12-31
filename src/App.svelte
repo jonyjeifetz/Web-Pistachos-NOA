@@ -18,7 +18,7 @@
 
   function cerrarMenu() {
     menuAbierto = false;
-    window.scrollTo(0, 0); // Sube al inicio al cambiar de página
+    window.scrollTo(0, 0); 
   }
 
   onMount(() => {
@@ -72,12 +72,12 @@
 
       <div class="menu-horizontal">
         <ul class="menu-list-horizontal">
-          <li><Link to="/" on:click={() => window.scrollTo(0,0)}>Inicio</Link></li>
-          <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>Acerca de Nosotros</Link></li>
-          <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>Acerca del Pistacho</Link></li>
-          <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>Noticias</Link></li>
-          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>Responsabilidad Social Empresarial</Link></li>
-          <li><Link to="/nuestra-gente" on:click={() => window.scrollTo(0,0)}>Nuestra Gente</Link></li>
+          <li><Link to="/" on:click={() => window.scrollTo(0,0)}>INICIO</Link></li>
+          <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
+          <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
+          <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
+          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>RESPONSABILIDAD SOCIAL EMPRESARIAL</Link></li>
+          <li><Link to="/nuestra-gente" on:click={() => window.scrollTo(0,0)}>NUESTRA GENTE</Link></li>
         </ul>
       </div>
     </nav>
@@ -124,40 +124,40 @@
   .nav-container {
     position: relative;
     z-index: 1000;
-    background-color: transparent; 
   }
 
-  /* --- MENU DESKTOP MODIFICADO --- */
+  /* --- MENU DESKTOP OPTIMIZADO PARA PANTALLAS GRANDES --- */
   .menu-horizontal {
     display: none;
     background-color: #000; 
-    padding: 20px 0;
+    padding: 25px 0; /* Más altura para dar presencia */
   }
 
   .menu-list-horizontal {
     display: flex;
     list-style: none;
     margin: 0 auto;
-    padding: 0;
-    /* justify-content: space-evenly asegura la misma separación entre cada item */
-    justify-content: space-evenly; 
-    width: 100%;
-    max-width: 1200px; /* Limita el ancho para que no se separe demasiado en monitores ultra-wide */
+    padding: 0 20px;
+    justify-content: space-between; /* Distribuye a lo largo de todo el ancho */
+    align-items: center;
+    width: 95%; /* Ocupa casi todo el ancho de la pantalla */
+    max-width: 1500px; /* Aumentado para que no se vea chico en el centro */
   }
 
   :global(.menu-list-horizontal a) {
     color: white;
     text-decoration: none;
-    /* Letra achicada para que el nombre largo de RSE entre en una línea */
-    font-size: 15px; 
+    font-size: 18px; /* Letra más grande y visible */
     font-weight: bold;
     text-transform: uppercase;
-    transition: color 0.3s;
-    white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+    transition: all 0.3s ease;
+    white-space: nowrap; 
+    padding: 5px 10px;
   }
 
   :global(.menu-list-horizontal a:hover) {
     color: #80A54D;
+    transform: scale(1.05); /* Efecto visual de resaltado */
   }
 
   /* --- MENU MÓVIL --- */
@@ -178,17 +178,6 @@
   .menu-mobile {
     background-color: #000;
     width: 100%;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-  }
-
-  .menu-list-vertical {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .menu-list-vertical li {
-    border-bottom: 1px solid #222;
   }
 
   :global(.menu-list-vertical a) {
@@ -197,10 +186,11 @@
     padding: 20px;
     text-decoration: none;
     font-size: 1.1rem;
+    border-bottom: 1px solid #222;
   }
 
-  /* --- RESPONSIVE --- */
-  @media (min-width: 1024px) { 
+  /* --- RESPONSIVE / BREAKPOINT --- */
+  @media (min-width: 1150px) { /* Ajustado para que el texto largo no choque */
     .menu-button {
       display: none;
     }
@@ -212,6 +202,7 @@
     }
   }
 
+  /* --- FOOTER --- */
   .footer { 
     background-color: #FFFFFF; 
     display: flex; 

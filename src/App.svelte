@@ -1,14 +1,15 @@
 <script>
-  /* --- (Mantenemos tu lógica de script intacta) --- */
   import { onMount } from "svelte";
   import { Router, Route, Link } from 'svelte-routing';
   import { slide } from 'svelte/transition';
+  
   import Inicio from './components/Inicio.svelte';
   import AcercaDeNosotros from './components/AcercaDeNosotros.svelte';
   import AcercaDelPistacho from './components/AcercaDelPistacho.svelte';
   import UltimasNoticiasDelPistacho from './components/UltimasNoticiasDelPistacho.svelte';
   import ResposabilidadSocialEmpresarial from './components/ResposabilidadSocialEmpresarial.svelte';
   import NuestraGente from './components/NuestraGente.svelte';
+  import Fotos from './components/Fotos.svelte'; 
 
   let menuAbierto = false;
 
@@ -62,9 +63,10 @@
             <li><a href="/" on:click={cerrarMenu}>Inicio</a></li>
             <li><Link to="/acerca-de-nosotros" on:click={cerrarMenu}>Acerca de Nosotros</Link></li>
             <li><Link to="/acerca-del-pistacho" on:click={cerrarMenu}>Acerca del Pistacho</Link></li>
-            <li><Link to="/ultimas-noticias-del-pistacho" on:click={cerrarMenu}>Últimas Noticias</Link></li>
-            <li><Link to="/responsabilidad-social-empresarial" on:click={cerrarMenu}>Responsabilidad Social Empresarial</Link></li>
+            <li><Link to="/fotos" on:click={cerrarMenu}>Fotos</Link></li>
             <li><Link to="/nuestra-gente" on:click={cerrarMenu}>Nuestra Gente</Link></li>
+            <li><Link to="/responsabilidad-social-empresarial" on:click={cerrarMenu}>Responsabilidad Social Empresarial</Link></li>
+            <li><Link to="/ultimas-noticias-del-pistacho" on:click={cerrarMenu}>Últimas Noticias</Link></li>
           </ul>
         </div>
       {/if}
@@ -74,9 +76,10 @@
           <li><a href="/">INICIO</a></li>
           <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
           <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
-          <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
-          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>RESPONSABILIDAD SOCIAL EMPRESARIAL</Link></li>
+          <li><Link to="/fotos" on:click={() => window.scrollTo(0,0)}>FOTOS</Link></li>
           <li><Link to="/nuestra-gente" on:click={() => window.scrollTo(0,0)}>NUESTRA GENTE</Link></li>
+          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>RESPONSABILIDAD SOCIAL EMPRESARIAL</Link></li>
+          <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
         </ul>
       </div>
     </nav>
@@ -85,9 +88,10 @@
       <Route path="/" component={Inicio} />
       <Route path="/acerca-de-nosotros" component={AcercaDeNosotros} />
       <Route path="/acerca-del-pistacho" component={AcercaDelPistacho} />
-      <Route path="/ultimas-noticias-del-pistacho" component={UltimasNoticiasDelPistacho} />
-      <Route path="/responsabilidad-social-empresarial" component={ResposabilidadSocialEmpresarial} />
+      <Route path="/fotos" component={Fotos} />
       <Route path="/nuestra-gente" component={NuestraGente} />
+      <Route path="/responsabilidad-social-empresarial" component={ResposabilidadSocialEmpresarial} />
+      <Route path="/ultimas-noticias-del-pistacho" component={UltimasNoticiasDelPistacho} />
     </div>
   </Router>
 
@@ -122,10 +126,9 @@
     text-align: center;
   }
 
-  /* --- MENU DESKTOP (IMAGEN 2) --- */
   .menu-horizontal {
-    display: none; /* Se activa en el media query */
-    background-color: #000; /* Siempre negro en PC */
+    display: none;
+    background-color: #000;
     padding: 25px 0;
     margin: 0;
   }
@@ -144,12 +147,13 @@
   :global(.menu-list-horizontal a), .menu-list-horizontal li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 13.5px; /* Ajuste para que entre todo en una línea en laptops */
     font-weight: bold;
     text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 5px;
   }
 
-  /* --- MENU MÓVIL DINÁMICO --- */
   .menu-button {
     display: block;
     width: 100%;
@@ -162,8 +166,8 @@
     text-align: left;
   }
 
-  .btn-verde { background-color: #80A54D; } /* Estado cerrado: Verde */
-  .btn-negro { background-color: #000; }   /* Estado abierto: Negro */
+  .btn-verde { background-color: #80A54D; } 
+  .btn-negro { background-color: #000; }   
 
   .menu-mobile {
     background-color: #000;
@@ -178,40 +182,36 @@
     border-bottom: 1px solid #222;
   }
 
-  /* --- CONTENT --- */
   .content {
     background-color: #80A54D;
     margin: 0;
-    display: flow-root; /* Evita el espacio blanco */
+    display: flow-root; 
     min-height: 50vh;
   }
 
-  /* --- RESPONSIVE --- */
   @media (min-width: 1150px) {
     .menu-button { display: none; }
-    .menu-horizontal { display: flex; } /* Aparece el menú negro de PC */
+    .menu-horizontal { display: flex; } 
     .menu-mobile { display: none; }
   }
 
- /* --- FOOTER --- */
   .footer { 
     background-color: #FFFFFF; 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    padding: 60px 20px; /* Añadimos padding lateral para que el texto no toque los bordes en el celular */
+    padding: 60px 20px; 
     margin: 0;
-    text-align: center; /* Centra el texto por defecto */
+    text-align: center; 
   }
 
   .footer h4 {
     margin: 0 0 30px 0;
     font-size: 1.5rem;
     line-height: 1.3;
-    max-width: 800px; /* Evita que el texto se estire demasiado en PC */
+    max-width: 800px; 
   }
   
-  /* Mantenemos tus logos exactamente como están ahora */
   .footer .social-icons { 
     display: flex; 
     gap: 80px; 
@@ -225,21 +225,18 @@
     height: auto;
   }
 
-  /* --- AJUSTE ESPECÍFICO PARA CELULARES --- */
   @media (max-width: 768px) {
     .footer h4 {
-      font-size: 1.2rem; /* Achicamos un poco la letra para que entre mejor */
-      width: 100%;       /* Asegura que ocupe el ancho disponible */
+      font-size: 1.2rem; 
+      width: 100%;      
       margin-bottom: 20px;
-      padding: 0 10px;   /* Aire extra a los costados del texto */
+      padding: 0 10px;  
     }
-
     .footer .social-icons {
-      gap: 50px; /* Mantenemos una separación cómoda para dedos en móvil */
+      gap: 50px; 
     }
-    
     .footer img {
-      width: 45px; /* Mantenemos tu tamaño de móvil */
+      width: 45px; 
     }
   }
 </style>

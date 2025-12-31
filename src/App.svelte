@@ -199,40 +199,47 @@
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    padding: 60px 0; /* Aumentamos el aire arriba y abajo */
+    padding: 60px 20px; /* Añadimos padding lateral para que el texto no toque los bordes en el celular */
     margin: 0;
+    text-align: center; /* Centra el texto por defecto */
+  }
+
+  .footer h4 {
+    margin: 0 0 30px 0;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    max-width: 800px; /* Evita que el texto se estire demasiado en PC */
   }
   
+  /* Mantenemos tus logos exactamente como están ahora */
   .footer .social-icons { 
     display: flex; 
-    gap: 80px; /* <--- Aumentamos la separación entre los logos en Desktop */
+    gap: 80px; 
     padding: 20px; 
     justify-content: center;
     align-items: center;
   }
   
   .footer img { 
-    width: 50px; /* Definimos un ancho fijo para que todos se vean iguales */
+    width: 50px; 
     height: auto;
-    transition: transform 0.3s ease;
   }
 
-  .footer img:hover {
-    transform: scale(1.1); /* Efecto sutil al pasar el mouse */
-  }
-
-  /* --- RESPONSIVE FOOTER --- */
+  /* --- AJUSTE ESPECÍFICO PARA CELULARES --- */
   @media (max-width: 768px) {
-    .footer {
-      padding: 40px 20px;
+    .footer h4 {
+      font-size: 1.2rem; /* Achicamos un poco la letra para que entre mejor */
+      width: 100%;       /* Asegura que ocupe el ancho disponible */
+      margin-bottom: 20px;
+      padding: 0 10px;   /* Aire extra a los costados del texto */
     }
 
     .footer .social-icons {
-      gap: 50px; /* <--- Separación generosa para móviles para evitar clics accidentales */
+      gap: 50px; /* Mantenemos una separación cómoda para dedos en móvil */
     }
-
+    
     .footer img {
-      width: 45px; /* Un poquito más chicos en móvil */
+      width: 45px; /* Mantenemos tu tamaño de móvil */
     }
   }
 </style>

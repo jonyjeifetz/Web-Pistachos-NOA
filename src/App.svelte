@@ -17,7 +17,6 @@
 
   function cerrarMenu() {
     menuAbierto = false;
-    // window.scrollTo(0, 0); // No es necesario si refrescamos la página
   }
 
   onMount(() => {
@@ -28,7 +27,7 @@
     
     document.getElementById("whatsapp-link").href = isMobile ? 
       `https://wa.me/${phoneNumber}?text=${prewrittenMessage}` : 
-      `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${prewrittenMessage}`;
+      `https://web.whatsapp.com/send?phone=${phoneNumber}?text=${prewrittenMessage}`;
 
     document.getElementById("instagram-link").href = isMobile ? 
       "instagram://user?username=pistachosriojanos" : 
@@ -49,7 +48,6 @@
 
   <Router>
     <nav class="nav-container">
-      
       <button 
         class="menu-button {menuAbierto ? 'menu-abierto-negro' : ''}" 
         on:click={toggleMenu}
@@ -108,9 +106,10 @@
 <style>
   /* --- BASE --- */
   :global(body) {
-    background-color: #80A54D;
+    background-color: #FFFFFF; /* Fondo global blanco para que lo que sobre abajo sea blanco */
     font-family: Arial, sans-serif;
     margin: 0;
+    padding: 0;
     overflow-x: hidden;
   }
 
@@ -118,6 +117,7 @@
     background-color: #FFFFFF;
     padding: 20px 0;
     text-align: center;
+    display: block;
   }
 
   .header a {
@@ -130,11 +130,20 @@
     z-index: 1000;
   }
 
-  /* --- MENU DESKTOP OPTIMIZADO --- */
+  /* --- CONTENIDO VERDE --- */
+  .content {
+    background-color: #80A54D; 
+    min-height: 50vh; /* Ajustado para que el verde ocupe buen espacio */
+    margin: 0; 
+    padding: 1px 0 0 0; /* El pixel superior evita el espacio blanco entre negro y verde */
+  }
+
+  /* --- MENU DESKTOP --- */
   .menu-horizontal {
     display: none;
     background-color: #000; 
     padding: 25px 0;
+    margin: 0; /* Elimina cualquier separación con el contenido verde */
   }
 
   .menu-list-horizontal {
@@ -148,7 +157,6 @@
     max-width: 1500px;
   }
 
-  /* Estilo para Link y para el <a> de Inicio */
   :global(.menu-list-horizontal a), .menu-list-horizontal li a {
     color: white;
     text-decoration: none;
@@ -169,7 +177,7 @@
   .menu-button {
     display: block;
     width: 100%;
-    background: transparent; 
+    background: #000; /* Fondo negro para evitar saltos de color */
     color: white;
     border: none;
     padding: 20px;
@@ -177,12 +185,12 @@
     font-weight: bold;
     cursor: pointer;
     text-align: left;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   }
 
   .menu-mobile {
     background-color: #000;
     width: 100%;
+    margin: 0;
   }
 
   :global(.menu-list-vertical a), .menu-list-vertical li a {
@@ -214,6 +222,7 @@
     flex-direction: column; 
     align-items: center; 
     padding: 40px 0; 
+    margin: 0;
   }
   
   .footer .social-icons { 
@@ -235,7 +244,7 @@
     .footer h4 {
       margin: 0 0 25px 0;
       width: 100%;
-      line-height: 1.4;
+      line-height: 1.2;
     }
 
     .footer .social-icons {

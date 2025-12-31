@@ -2,30 +2,32 @@
   import { onMount } from "svelte";
 
   let recetasContainer;
-  let scrollInterval;
+  let frameId;
+
+  // FUNCIÓN DE ANIMACIÓN SUAVE
+  const animar = () => {
+    if (recetasContainer) {
+      recetasContainer.scrollLeft += 1; // Misma velocidad que la galería
+
+      // Reinicio para loop infinito
+      if (recetasContainer.scrollLeft >= recetasContainer.scrollWidth / 2) {
+        recetasContainer.scrollLeft = 0;
+      }
+    }
+    frameId = requestAnimationFrame(animar);
+  };
 
   onMount(() => {
-    // Lógica para que el scroll se pase solo
-    const startAutoScroll = () => {
-      scrollInterval = setInterval(() => {
-        if (recetasContainer) {
-          recetasContainer.scrollLeft += 1; 
-          // Si llega a la mitad (final de la primera tanda), vuelve al inicio
-          if (recetasContainer.scrollLeft >= recetasContainer.scrollWidth / 2) {
-            recetasContainer.scrollLeft = 0;
-          }
-        }
-      }, 30); // Velocidad del movimiento
-    };
+    // Iniciar animación
+    frameId = requestAnimationFrame(animar);
 
-    // Lógica para que en móviles la receta del centro active el nombre y botón
+    // Lógica para móviles: activar efectos en la receta central
     const handleMobileScroll = () => {
       const items = document.querySelectorAll('.receta');
       const centerX = window.innerWidth / 2;
 
       items.forEach(item => {
         const rect = item.getBoundingClientRect();
-        // Si el centro de la receta está en el centro de la pantalla
         if (rect.left < centerX && rect.right > centerX) {
           item.classList.add('active-center');
         } else {
@@ -34,19 +36,19 @@
       });
     };
 
-    startAutoScroll();
     recetasContainer.addEventListener('scroll', handleMobileScroll);
 
-    // Pausas al interactuar
-    const stopScroll = () => clearInterval(scrollInterval);
-    const resumeScroll = () => startAutoScroll();
+    // PAUSAS (Solo en Desktop para evitar trabas en móvil)
+    const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (!esMovil) {
+      recetasContainer.addEventListener('mouseenter', () => cancelAnimationFrame(frameId));
+      recetasContainer.addEventListener('mouseleave', () => {
+        frameId = requestAnimationFrame(animar);
+      });
+    }
 
-    recetasContainer.addEventListener('mouseenter', stopScroll);
-    recetasContainer.addEventListener('mouseleave', resumeScroll);
-    recetasContainer.addEventListener('touchstart', stopScroll);
-    recetasContainer.addEventListener('touchend', resumeScroll);
-
-    return () => clearInterval(scrollInterval);
+    return () => cancelAnimationFrame(frameId);
   });
 </script>
 
@@ -89,118 +91,116 @@
 </div>
 
 <style>
-    h1 {
-        font-family: montserrat;
-        color: #FFFFFF;
-        text-align: center;
-        margin-top: 40px;
-    }
+  /* Mantenemos tus estilos y aseguramos compatibilidad */
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 40px;
+  }
 
-    /* Recetas */
   .recetas-container {
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-      padding: 40px 0;
-      margin-bottom: 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 40px 0;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto; /* IMPORTANTE para evitar conflictos con JS */
   }
 
   .recetas-container::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
 
   .recetas {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      flex-wrap: nowrap;
-      padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    flex-wrap: nowrap;
+    padding: 0 20px;
   }
 
   .receta {
-      position: relative;
-      width: 300px;
-      height: 400px;
-      text-align: center;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.4s ease;
-      overflow: hidden;
-      border-radius: 10px;
+    position: relative;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease;
+    overflow: hidden;
+    border-radius: 10px;
   }
 
   .receta img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: all 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
   }
 
-  /* Efecto hover para PC */
   @media (min-width: 769px) {
     .receta:hover img {
-        transform: scale(1.1);
-        filter: brightness(0.6);
+      transform: scale(1.1);
+      filter: brightness(0.6);
     }
     .receta:hover .hover-text,
     .receta:hover .btn-ver-receta {
-        opacity: 1;
+      opacity: 1;
     }
   }
 
-  /* Hover-text */
   .hover-text {
-      position: absolute;
-      top: 40%;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 10px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 2;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    position: absolute;
+    top: 40%;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    pointer-events: none;
   }
 
-  /* Botón */
   .btn-ver-receta {
-      position: absolute;
-      bottom: 20%;
-      background-color: black;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      opacity: 0;
-      transition: all 0.4s ease;
-      z-index: 2;
+    position: absolute;
+    bottom: 20%;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 2;
   }
 
-  /* Efecto para Móviles (Activo al estar en el centro) */
   :global(.receta.active-center img) {
-      transform: scale(1.1);
-      filter: brightness(0.6);
+    transform: scale(1.1);
+    filter: brightness(0.6);
   }
   :global(.receta.active-center .hover-text),
   :global(.receta.active-center .btn-ver-receta) {
-      opacity: 1;
+    opacity: 1;
   }
 
-  /* Ajustes Responsive */
   @media (max-width: 768px) {
-      .receta {
-          width: 250px;
-          height: 350px;
-      }
-      .hover-text {
-          font-size: 18px;
-      }
+    .receta {
+      width: 250px;
+      height: 350px;
+    }
+    .hover-text {
+      font-size: 18px;
+    }
   }
 
   .flourish-embed {

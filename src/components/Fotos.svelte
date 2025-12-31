@@ -18,44 +18,47 @@
   ];
 
   let galeriaContainer;
-  let scrollInterval;
-  let itemSeleccionado = null; // Controla qué imagen se ve en grande
+  let frameId; // Para controlar la animación
+  let itemSeleccionado = null; 
 
-  // Funciones para el Modal
+  // FUNCIÓN DE ANIMACIÓN (Optimizado para móviles)
+  const animar = () => {
+    if (galeriaContainer && !itemSeleccionado) {
+      galeriaContainer.scrollLeft += 1; // Velocidad de desplazamiento
+      
+      // Reinicio para loop infinito
+      if (galeriaContainer.scrollLeft >= galeriaContainer.scrollWidth / 2) {
+        galeriaContainer.scrollLeft = 0;
+      }
+    }
+    frameId = requestAnimationFrame(animar);
+  };
+
   function abrirModal(item) {
     itemSeleccionado = item;
-    pararScroll(); // Pausamos el movimiento mientras mira la foto
+    // No cancelamos el frame aquí para que sea más simple, 
+    // la condición !itemSeleccionado dentro de animar() detendrá el avance.
   }
 
   function cerrarModal() {
     itemSeleccionado = null;
-    iniciarScroll(); // Reanudamos el movimiento
   }
 
-  const iniciarScroll = () => {
-    if (scrollInterval) pararScroll(); // Evita duplicar intervalos
-    scrollInterval = setInterval(() => {
-      if (galeriaContainer && !itemSeleccionado) {
-        galeriaContainer.scrollLeft += 1;
-        if (galeriaContainer.scrollLeft >= galeriaContainer.scrollWidth / 2) {
-          galeriaContainer.scrollLeft = 0;
-        }
-      }
-    }, 30);
-  };
-
-  const pararScroll = () => clearInterval(scrollInterval);
-
   onMount(() => {
-    iniciarScroll();
+    // Iniciar animación
+    frameId = requestAnimationFrame(animar);
 
-    // Eventos de pausa manual (hover/touch)
-    galeriaContainer.addEventListener('mouseenter', pararScroll);
-    galeriaContainer.addEventListener('mouseleave', () => {
-        if (!itemSeleccionado) iniciarScroll();
-    });
+    // Pausa con mouse solo en Desktop
+    const pausar = () => { if (!itemSeleccionado) itemSeleccionado = true; }; // Uso temporal para frenar
+    const reanudar = () => { if (itemSeleccionado === true) itemSeleccionado = null; };
 
-    return () => pararScroll();
+    // Solo agregamos eventos de mouse si no es táctil para evitar conflictos en celular
+    if (window.matchMedia("(hover: hover)").matches) {
+      galeriaContainer.addEventListener('mouseenter', pausar);
+      galeriaContainer.addEventListener('mouseleave', reanudar);
+    }
+
+    return () => cancelAnimationFrame(frameId);
   });
 
   function manejarError(e) {
@@ -69,7 +72,10 @@
     <p>La Rioja, Argentina</p>
   </div>
 
-  <div class="galeria-wrapper" bind:this={galeriaContainer}>
+  <div 
+    class="galeria-wrapper" 
+    bind:this={galeriaContainer}
+  >
     <div class="galeria-content">
       {#each [1, 2] as loop}
         {#each baseItems as item}
@@ -86,7 +92,7 @@
     </div>
   </div>
 
-  {#if itemSeleccionado}
+  {#if itemSeleccionado && typeof itemSeleccionado === 'object'}
     <div class="modal-overlay" transition:fade={{ duration: 200 }} on:click={cerrarModal}>
       <button class="boton-cerrar" on:click={cerrarModal}>✕</button>
       
@@ -129,6 +135,9 @@
     white-space: nowrap;
     scrollbar-width: none;
     cursor: pointer;
+    /* Mejora el scroll en móviles */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto; /* IMPORTANTE: Mantener en auto para que JS controle el scroll suavemente */
   }
 
   .galeria-wrapper::-webkit-scrollbar { display: none; }
@@ -149,6 +158,8 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     background-color: #709143;
     transition: transform 0.3s ease;
+    /* Evita que el click se confunda con drag en algunos móviles */
+    user-select: none;
   }
 
   .item-galeria:hover { transform: translateY(-5px); }
@@ -158,9 +169,9 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none; /* Evita que la imagen intercepte el click del contenedor */
   }
 
-  /* Capa de "ver más" al pasar el mouse */
   .zoom-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -175,23 +186,26 @@
     font-family: 'Montserrat', sans-serif;
   }
 
-  .item-galeria:hover .zoom-overlay { opacity: 1; }
+  @media (hover: hover) {
+    .item-galeria:hover .zoom-overlay { opacity: 1; }
+  }
 
   /* ESTILOS DEL MODAL */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 1000;
+    background: rgba(0,0,0,0.95);
+    z-index: 10000; /* Asegurar que esté por encima de todo */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    touch-action: none; /* Evita scroll de fondo en móvil */
   }
 
   .modal-contenido {
-    max-width: 90%;
+    max-width: 95%;
     max-height: 90vh;
     display: flex;
     justify-content: center;
@@ -201,7 +215,7 @@
     max-width: 100%;
     max-height: 85vh;
     border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    object-fit: contain;
   }
 
   .boton-cerrar {
@@ -213,17 +227,15 @@
     border-radius: 50%;
     font-size: 1.5rem;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 10001;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.3s;
   }
-
-  .boton-cerrar:hover { background: #ccc; }
 
   @media (max-width: 768px) {
     .item-galeria { flex: 0 0 300px; height: 280px; }
     .galeria-wrapper { height: 300px; }
+    .titulos h1 { font-size: 1.6rem; }
   }
 </style>

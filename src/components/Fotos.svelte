@@ -181,7 +181,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     font-family: 'Montserrat', sans-serif;
-    z-index: 5;
+    z-index: 5; 
   }
 
   /* ACTIVACIÓN POR HOVER O CENTRO */

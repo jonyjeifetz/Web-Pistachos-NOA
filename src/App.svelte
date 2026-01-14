@@ -44,14 +44,19 @@
 <main>
   <div class="header"> 
     <a href="/">
-      <img src="./images/Logo-Pistachos.png" alt="Logo-Pistachos-Riojanos" />
+      <img 
+        src="./images/Logo-Pistachos.png" 
+        alt="Logo-Pistachos-NOA" 
+        width="400" 
+        height="177" 
+      />
     </a>
-  </div>  
+  </div> 
 
   <Router>
     <nav class="nav-container">
       <button 
-        class="menu-button {menuAbierto ? 'btn-negro' : 'btn-verde'}" 
+        class="menu-button {menuAbierto ? 'btn-tierra' : 'btn-oro'}" 
         on:click={toggleMenu}
       >
         {menuAbierto ? '✕ Cerrar' : '☰ Menú'}
@@ -109,10 +114,20 @@
 </main>
 
 <style>
+  /* --- VARIABLES DE COLOR (Paleta Pistachos NOA) --- */
+  :root {
+    --oro-pistacho: #D4AF37;
+    --verde-oliva: #6B8E23;
+    --marron-tierra: #4B3621;
+    --crema-arena: #FDFBF7;
+    --texto-oscuro: #2D1E12;
+  }
+
   /* --- BASE --- */
   :global(body) {
-    background-color: #FFFFFF;
-    font-family: Arial, sans-serif;
+    background-color: var(--crema-arena);
+    color: var(--texto-oscuro);
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -124,12 +139,14 @@
     background-color: #FFFFFF;
     padding: 20px 0;
     text-align: center;
+    border-bottom: 3px solid var(--oro-pistacho); /* Detalle de lujo */
   }
 
+  /* --- NAVEGACIÓN --- */
   .menu-horizontal {
     display: none;
-    background-color: #000;
-    padding: 25px 0;
+    background-color: var(--marron-tierra);
+    padding: 20px 0;
     margin: 0;
   }
 
@@ -145,13 +162,17 @@
   }
 
   :global(.menu-list-horizontal a), .menu-list-horizontal li a {
-    color: white;
+    color: var(--crema-arena);
     text-decoration: none;
-    font-size: 13.5px; /* Ajuste para que entre todo en una línea en laptops */
+    font-size: 13px;
     font-weight: bold;
     text-transform: uppercase;
     white-space: nowrap;
-    padding: 0 5px;
+    transition: color 0.3s ease;
+  }
+
+  :global(.menu-list-horizontal a:hover) {
+    color: var(--oro-pistacho);
   }
 
   .menu-button {
@@ -166,24 +187,26 @@
     text-align: left;
   }
 
-  .btn-verde { background-color: #80A54D; } 
-  .btn-negro { background-color: #000; }   
+  .btn-oro { background-color: var(--oro-pistacho); color: var(--marron-tierra); } 
+  .btn-tierra { background-color: var(--marron-tierra); }   
 
   .menu-mobile {
-    background-color: #000;
+    background-color: var(--marron-tierra);
     width: 100%;
   }
 
   :global(.menu-list-vertical a), .menu-list-vertical li a {
     display: block;
-    color: white;
+    color: var(--crema-arena);
     padding: 20px;
     text-decoration: none;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #5a4128;
   }
 
+  /* --- CONTENIDO --- */
   .content {
-    background-color: #80A54D;
+    background-color: var(--verde-oliva);
+    color: white;
     margin: 0;
     display: flow-root; 
     min-height: 50vh;
@@ -195,21 +218,23 @@
     .menu-mobile { display: none; }
   }
 
+  /* --- FOOTER --- */
   .footer { 
     background-color: #FFFFFF; 
+    color: var(--marron-tierra);
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     padding: 60px 20px; 
     margin: 0;
-    text-align: center; 
+    text-align: center;
+    border-top: 1px solid #eee;
   }
 
   .footer h4 {
     margin: 0 0 30px 0;
     font-size: 1.5rem;
-    line-height: 1.3;
-    max-width: 800px; 
+    color: var(--marron-tierra);
   }
   
   .footer .social-icons { 
@@ -223,20 +248,21 @@
   .footer img { 
     width: 50px; 
     height: auto;
+    filter: sepia(0.5) contrast(1.2); /* Sutil efecto para que peguen con la paleta */
+  }
+
+  .footer-copy {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
   }
 
   @media (max-width: 768px) {
     .footer h4 {
       font-size: 1.2rem; 
-      width: 100%;      
-      margin-bottom: 20px;
-      padding: 0 10px;  
     }
     .footer .social-icons {
       gap: 50px; 
-    }
-    .footer img {
-      width: 45px; 
     }
   }
 </style>

@@ -60,7 +60,6 @@
     const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     if (!esMovil) {
-      // En PC frenamos si el mouse entra (opcional, si querés que no frene nunca podés quitar esto)
       galeriaContainer.addEventListener('mouseenter', () => { if(!itemSeleccionado) itemSeleccionado = true });
       galeriaContainer.addEventListener('mouseleave', () => { if(itemSeleccionado === true) itemSeleccionado = null });
     }
@@ -111,20 +110,41 @@
 </div>
 
 <style>
+  /* --- VARIABLES --- */
+  :root {
+    --oro-pistacho: #D4AF37;
+    --verde-oliva: #6B8E23;
+    --marron-tierra: #4B3621;
+    --crema-arena: #FDFBF7;
+  }
+
   .seccion-galeria {
-    background-color: #80A54D;
+    background-color: var(--verde-oliva); /* Verde institucional de fondo */
     padding: 60px 0;
     overflow: hidden;
+    border-top: 4px solid var(--oro-pistacho); /* Separador dorado */
   }
 
   .titulos {
     text-align: center;
-    color: white;
+    color: var(--crema-arena); /* Texto claro para contraste sobre verde */
     margin-bottom: 30px;
     font-family: 'Montserrat', sans-serif;
   }
 
-  .titulos h1 { font-size: 2.2rem; margin: 0; text-transform: uppercase; }
+  .titulos h1 { 
+    font-size: 2.2rem; 
+    margin: 0; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+  }
+
+  .titulos p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    color: var(--oro-pistacho); /* Subtítulo en dorado */
+    font-weight: bold;
+  }
 
   .galeria-wrapper {
     width: 100%;
@@ -150,13 +170,19 @@
     position: relative;
     flex: 0 0 500px;
     height: 380px;
-    margin: 0 10px;
-    border-radius: 15px;
+    margin: 0 15px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    background-color: #709143;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    background-color: var(--marron-tierra);
     transition: transform 0.4s ease;
     user-select: none;
+    border: 2px solid transparent;
+  }
+
+  /* Marco dorado para el item que pasa por el centro */
+  :global(.item-galeria.active-center) {
+    border-color: var(--oro-pistacho);
   }
 
   .item-galeria img, .item-galeria video {
@@ -171,20 +197,26 @@
   .zoom-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.45);
+    background: rgba(75, 54, 33, 0.7); /* Marrón tierra con transparencia */
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     transition: opacity 0.4s ease;
-    color: white;
+    color: var(--crema-arena);
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     font-family: 'Montserrat', sans-serif;
     z-index: 5; 
   }
 
-  /* ACTIVACIÓN POR HOVER O CENTRO */
+  .zoom-overlay span {
+    border: 2px solid var(--oro-pistacho);
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  /* ACTIVACIÓN */
   .item-galeria:hover .zoom-overlay,
   :global(.item-galeria.active-center .zoom-overlay) {
     opacity: 1;
@@ -192,8 +224,8 @@
 
   .item-galeria:hover img,
   :global(.item-galeria.active-center img) {
-    filter: brightness(0.7);
-    transform: scale(1.05);
+    filter: brightness(0.6);
+    transform: scale(1.08);
   }
 
   /* MODAL */
@@ -201,7 +233,7 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
+    background: rgba(45, 30, 18, 0.97); /* Marrón muy oscuro casi negro */
     z-index: 10000;
     display: flex;
     justify-content: center;
@@ -210,35 +242,35 @@
     touch-action: none;
   }
 
-  .modal-contenido {
-    max-width: 95%;
-    max-height: 90vh;
-  }
-
   .modal-contenido img, .video-full {
     max-width: 100%;
     max-height: 85vh;
     border-radius: 8px;
     object-fit: contain;
+    border: 3px solid var(--oro-pistacho); /* Marco dorado en el modal */
   }
 
   .boton-cerrar {
     position: absolute;
     top: 20px; right: 20px;
-    background: white;
+    background: var(--oro-pistacho);
+    color: var(--marron-tierra);
     border: none;
-    width: 45px; height: 45px;
+    width: 50px; height: 50px;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
     cursor: pointer;
     z-index: 10001;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
 
   @media (max-width: 768px) {
-    .item-galeria { flex: 0 0 300px; height: 280px; }
-    .galeria-wrapper { height: 320px; }
+    .item-galeria { flex: 0 0 320px; height: 260px; }
+    .galeria-wrapper { height: 300px; }
+    .titulos h1 { font-size: 1.6rem; }
   }
 </style>

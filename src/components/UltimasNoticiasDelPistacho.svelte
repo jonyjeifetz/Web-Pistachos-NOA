@@ -1,50 +1,96 @@
 <div class="cuerpo">
-    <h1 style="font-family: montserrat;">Ultimas Noticias del Pistacho</h1>
-    <br>
-    <br>
-    <h3 style="font-family: montserrat;">Proximamente!</h3>
+    <div class="noticias-header">
+        <h1>Últimas Noticias del Pistacho</h1>
+        <div class="linea-decorativa"></div>
+    </div>
+    
+    <div class="noticias-placeholder">
+        <div class="icono-noticia">📰</div>
+        <h3>¡Próximamente!</h3>
+        <p>Estamos preparando las novedades más relevantes sobre la cosecha, el mercado y la cultura del pistacho en La Rioja.</p>
+    </div>
 </div>
 
 <style>
-
-    .cuerpo{
-        margin: 8px; /* Margen predeterminado */
-        padding: 0;  /* Relleno desactivado para evitar inconsistencias */
-        text-align: center; /* Centra el contenido */
-        flex: 1; /* Ocupa el espacio restante entre el header y el footer */
+    /* --- VARIABLES --- */
+    :root {
+      --oro-pistacho: #D4AF37;
+      --verde-oliva: #6B8E23;
+      --marron-tierra: #4B3621;
+      --crema-arena: #FDFBF7;
     }
 
-    .cuerpo h1, h3 {
-        font-family: montserrat;
-        color: #FFFFFF;
+    .cuerpo {
+        margin: 0;
+        padding: 60px 20px;
+        text-align: center;
+        background-color: var(--crema-arena);
+        min-height: 75vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* Ajustes generales para los h1 en pantallas grandes */
+    .noticias-header {
+        margin-bottom: 50px;
+    }
+
     .cuerpo h1 {
-        font-size: 36px; /* Tamaño de fuente por defecto */
-        margin-bottom: 10px; /* Espacio debajo del título */
+        font-family: 'Montserrat', sans-serif;
+        color: var(--marron-tierra);
+        font-size: 36px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
     }
 
-    @media (max-width: 768px) {
-    .cuerpo h1 {
-        font-size: 32px; /* Tamaño ajustado para pantallas móviles */
-        line-height: 1.2; /* Ajuste del interlineado para evitar exceso de espacio */
-        margin-bottom: 5px; /* Menos espacio debajo del título */
-        font-weight: bold; /* Hacer que el título sea en negrita */
+    .linea-decorativa {
+        width: 80px;
+        height: 4px;
+        background-color: var(--oro-pistacho);
+        margin: 0 auto;
+        border-radius: 2px;
+    }
+
+    .noticias-placeholder {
+        max-width: 600px;
+        padding: 40px;
+        border: 2px dashed var(--oro-pistacho); /* Estilo "en construcción" elegante */
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .icono-noticia {
+        font-size: 3rem;
+        margin-bottom: 10px;
     }
 
     .cuerpo h3 {
-        font-size: 26px; /* Tamaño ajustado para h3 en pantallas móviles */
-        line-height: 1.3; /* Ajuste del interlineado para h3 */
-        margin-bottom: 5px; /* Ajuste del espacio debajo de h3 */
-    }
+        font-family: 'Montserrat', sans-serif;
+        color: var(--verde-oliva);
+        font-size: 28px;
+        margin: 10px 0;
     }
 
     .cuerpo p {
-        font-family: roboto;
-        color: #FFFFFF;
-        padding: 1rem 0;
-        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        color: var(--marron-tierra);
+        line-height: 1.6;
+        font-size: 1.1rem;
+        margin-top: 15px;
     }
 
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .cuerpo h1 {
+            font-size: 28px;
+        }
+        .noticias-placeholder {
+            padding: 30px 15px;
+            margin: 0 10px;
+        }
+        .cuerpo h3 {
+            font-size: 22px;
+        }
+    }
 </style>

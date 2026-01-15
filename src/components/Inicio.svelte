@@ -1,26 +1,51 @@
 <script>
   import { onMount } from "svelte";
+  import { fade, scale } from 'svelte/transition';
 
-  let recetasContainer;
+  let galeriaContainer;
   let frameId;
+  let itemSeleccionado = null;
+
+  // Configuración de archivos de la galería
+  const totalFotos = 160; 
+  const totalVideos = 5; 
+
+  let baseItems = [
+    ...Array.from({ length: totalVideos }, (_, i) => ({
+      tipo: 'video',
+      url: `./images/galeria/videos/Video (${i + 1}).mp4`,
+    })),
+    ...Array.from({ length: totalFotos }, (_, i) => ({
+      tipo: 'foto',
+      url: `./images/galeria/Foto (${i + 1}).jpg`,
+    }))
+  ];
 
   // FUNCIÓN DE ANIMACIÓN SUAVE
   const animar = () => {
-    if (recetasContainer) {
-      recetasContainer.scrollLeft += 1; 
+    if (galeriaContainer && !itemSeleccionado) {
+      galeriaContainer.scrollLeft += 1; 
 
-      if (recetasContainer.scrollLeft >= recetasContainer.scrollWidth / 2) {
-        recetasContainer.scrollLeft = 0;
+      if (galeriaContainer.scrollLeft >= galeriaContainer.scrollWidth / 2) {
+        galeriaContainer.scrollLeft = 0;
       }
     }
     frameId = requestAnimationFrame(animar);
   };
 
+  function abrirModal(item) {
+    itemSeleccionado = item;
+  }
+
+  function cerrarModal() {
+    itemSeleccionado = null;
+  }
+
   onMount(() => {
     frameId = requestAnimationFrame(animar);
 
     const handleMobileScroll = () => {
-      const items = document.querySelectorAll('.receta');
+      const items = document.querySelectorAll('.item-galeria');
       const centerX = window.innerWidth / 2;
 
       items.forEach(item => {
@@ -33,63 +58,65 @@
       });
     };
 
-    recetasContainer.addEventListener('scroll', handleMobileScroll);
+    galeriaContainer.addEventListener('scroll', handleMobileScroll);
 
     const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     if (!esMovil) {
-      recetasContainer.addEventListener('mouseenter', () => cancelAnimationFrame(frameId));
-      recetasContainer.addEventListener('mouseleave', () => {
-        frameId = requestAnimationFrame(animar);
+      galeriaContainer.addEventListener('mouseenter', () => cancelAnimationFrame(frameId));
+      galeriaContainer.addEventListener('mouseleave', () => {
+        if (!itemSeleccionado) frameId = requestAnimationFrame(animar);
       });
     }
 
     return () => cancelAnimationFrame(frameId);
   });
+
+  function manejarError(e) {
+    e.target.closest('.item-galeria').style.display = 'none';
+  }
 </script>
 
 <div class="seccion-principal">
-  <h1>De La Rioja al mundo: Nuestro alcance</h1>
+  <h1>De Catamarca al mundo: Nuestro alcance</h1>
   <div id="flourish-container">
-    <div class="flourish-embed flourish-map" data-src="visualisation/20858873"></div>
+    <div class="flourish-embed flourish-map" data-src="visualisation/27220153"></div>
   </div>
 
-  <h1 class="titulo-recetas">De La Rioja a Tu Mesa: Recetas Creativas con Pistacho</h1>
-  <div class="recetas-container" bind:this={recetasContainer}>
-    <div class="recetas">
+  <h1 class="titulo-galeria">Nuestra Producción en Imágenes</h1>
+  <div class="galeria-scroll-container" bind:this={galeriaContainer}>
+    <div class="galeria-track">
       {#each [1, 2] as loop}
-        <div class="receta">
-          <img src="./images/Brownie de Pistacho.jpeg" alt="Brownie de Pistacho" />
-          <div class="hover-text">Brownie de Pistacho</div>
-          <a href="./Recetas/Receta Brownie de Pistacho.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
-        </div>
-        <div class="receta">
-          <img src="./images/Baklava.jpeg" alt="Baklava" />
-          <div class="hover-text">Baklava de Pistacho</div>
-          <a href="./Recetas/Receta Baklava de Pistacho.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
-        </div>
-        <div class="receta">
-          <img src="./images/Queso.jpeg" alt="Queso" />
-          <div class="hover-text">Queso con Pistacho</div>
-          <a href="./Recetas/Receta Queso de Pistacho.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
-        </div>
-        <div class="receta">
-          <img src="./images/Crema de Pistacho.jpeg" alt="Crema de Pistacho" />
-          <div class="hover-text">Crema de Pistacho</div>
-          <a href="./Recetas/Receta Crema Pistacho.pdf" target="_blank" class="btn-ver-receta" >Ver receta</a>
-        </div>
-        <div class="receta">
-          <img src="./images/Trufas.jpeg" alt="Trufas de Pistacho" />
-          <div class="hover-text">Trufas de Pistacho, Palta y Chocolate</div>
-          <a href="./Recetas/Receta Trufas de Pistacho, Palta y Chocolate.pdf" target="_blank" class="btn-ver-receta">Ver receta</a>
-        </div>
+        {#each baseItems as item}
+          <div class="item-galeria" on:click={() => abrirModal(item)}>
+            {#if item.tipo === 'foto'}
+              <img src={item.url} alt="Pistachos Riojanos" loading="lazy" on:error={manejarError} />
+            {:else}
+              <video src={item.url} autoplay muted loop playsinline on:error={manejarError}></video>
+            {/if}
+            <div class="hover-text">Pistachos Riojanos</div>
+            <button class="btn-ampliar">🔍 AMPLIAR</button>
+          </div>
+        {/each}
       {/each}
     </div>
   </div>
+
+  {#if itemSeleccionado}
+    <div class="modal-overlay" transition:fade={{ duration: 200 }} on:click={cerrarModal}>
+      <button class="boton-cerrar" on:click={cerrarModal}>✕</button>
+      <div class="modal-contenido" on:click|stopPropagation>
+        {#if itemSeleccionado.tipo === 'foto'}
+          <img src={itemSeleccionado.url} alt="Vista Completa" transition:scale={{ duration: 300, start: 0.9 }} />
+        {:else}
+          <video src={itemSeleccionado.url} controls autoplay playsinline class="video-full"></video>
+        {/if}
+      </div>
+    </div>
+  {/if}
 </div>
 
 <style>
-  /* --- VARIABLES --- */
   :root {
     --oro-pistacho: #D4AF37;
     --verde-oliva: #6B8E23;
@@ -113,40 +140,35 @@
     font-size: 2rem;
   }
 
-  .titulo-recetas {
-    color: var(--verde-oliva);
+  .titulo-galeria {
+    color: var(--marron-tierra);
     margin-top: 80px;
   }
 
-  .recetas-container {
+  .galeria-scroll-container {
     display: flex;
-    justify-content: flex-start;
     width: 100%;
     padding: 40px 0;
-    margin-bottom: 20px;
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: auto;
   }
 
-  .recetas-container::-webkit-scrollbar {
+  .galeria-scroll-container::-webkit-scrollbar {
     display: none;
   }
 
-  .recetas {
+  .galeria-track {
     display: flex;
     gap: 30px;
     width: max-content;
-    flex-wrap: nowrap;
     padding: 0 40px;
   }
 
-  .receta {
+  .item-galeria {
     position: relative;
     width: 320px;
     height: 450px;
-    text-align: center;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -156,10 +178,11 @@
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(75, 54, 33, 0.2);
-    border: 1px solid rgba(212, 175, 55, 0.3); /* Borde sutil oro */
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    cursor: pointer;
   }
 
-  .receta img {
+  .item-galeria img, .item-galeria video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -167,12 +190,12 @@
   }
 
   @media (min-width: 769px) {
-    .receta:hover img {
+    .item-galeria:hover img, .item-galeria:hover video {
       transform: scale(1.1);
       filter: brightness(0.5);
     }
-    .receta:hover .hover-text,
-    .receta:hover .btn-ver-receta {
+    .item-galeria:hover .hover-text,
+    .item-galeria:hover .btn-ampliar {
       opacity: 1;
     }
   }
@@ -184,7 +207,6 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 22px;
     font-weight: bold;
-    padding: 0 20px;
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 2;
@@ -193,14 +215,14 @@
     text-transform: uppercase;
   }
 
-  .btn-ver-receta {
+  .btn-ampliar {
     position: absolute;
     bottom: 15%;
     background-color: var(--oro-pistacho);
     color: var(--marron-tierra);
     padding: 12px 25px;
     border-radius: 25px;
-    text-decoration: none;
+    border: none;
     font-weight: bold;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -208,43 +230,58 @@
     transition: all 0.4s ease;
     z-index: 2;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
   }
 
-  .btn-ver-receta:hover {
-    background-color: white;
-    transform: translateY(-2px);
-  }
-
-  /* Animación para móvil */
-  :global(.receta.active-center img) {
+  /* Animación para móvil (cuando el item pasa por el centro) */
+  :global(.item-galeria.active-center img), :global(.item-galeria.active-center video) {
     transform: scale(1.1);
     filter: brightness(0.5);
   }
-  :global(.receta.active-center .hover-text),
-  :global(.receta.active-center .btn-ver-receta) {
+  :global(.item-galeria.active-center .hover-text),
+  :global(.item-galeria.active-center .btn-ampliar) {
     opacity: 1;
   }
 
+  /* MODAL STYLES */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(45, 30, 18, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .modal-contenido img, .video-full {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 8px;
+    border: 3px solid var(--oro-pistacho);
+  }
+
+  .boton-cerrar {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--oro-pistacho);
+    color: var(--marron-tierra);
+    border: none;
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+  }
+
   @media (max-width: 768px) {
-    .receta {
-      width: 280px;
-      height: 380px;
-    }
-    h1 {
-      font-size: 1.5rem;
-      padding: 40px 15px 0;
-    }
-    .hover-text {
-      font-size: 18px;
-    }
+    .item-galeria { width: 280px; height: 380px; }
+    h1 { font-size: 1.5rem; }
   }
 
-  .flourish-embed {
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
+  .flourish-embed { width: 100%; margin-top: 20px; }
+  * { box-sizing: border-box; }
 </style>

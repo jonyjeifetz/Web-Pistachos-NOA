@@ -9,7 +9,7 @@
   import UltimasNoticiasDelPistacho from './components/UltimasNoticiasDelPistacho.svelte';
   import ResposabilidadSocialEmpresarial from './components/ResposabilidadSocialEmpresarial.svelte';
   import NuestraGente from './components/NuestraGente.svelte';
-  import Fotos from './components/Fotos.svelte'; 
+  import Recetas from './components/Recetas.svelte'; 
 
   let menuAbierto = false;
 
@@ -66,12 +66,12 @@
         <div class="menu-mobile" transition:slide>
           <ul class="menu-list-vertical">
             <li><a href="/" on:click={cerrarMenu}>Inicio</a></li>
-            <li><Link to="/acerca-de-nosotros" on:click={cerrarMenu}>Acerca de Nosotros</Link></li>
-            <li><Link to="/acerca-del-pistacho" on:click={cerrarMenu}>Acerca del Pistacho</Link></li>
-            <li><Link to="/fotos" on:click={cerrarMenu}>Fotos</Link></li>
+            <li><Link to="/recetas" on:click={cerrarMenu}>Recetas</Link></li>
             <li><Link to="/nuestra-gente" on:click={cerrarMenu}>Nuestra Gente</Link></li>
             <li><Link to="/responsabilidad-social-empresarial" on:click={cerrarMenu}>Responsabilidad Social Empresarial</Link></li>
-            <li><Link to="/ultimas-noticias-del-pistacho" on:click={cerrarMenu}>Últimas Noticias</Link></li>
+            <li><Link to="/acerca-de-nosotros" on:click={cerrarMenu}>Acerca de Nosotros</Link></li>
+            <li><Link to="/acerca-del-pistacho" on:click={cerrarMenu}>Acerca del Pistacho</Link></li>
+            <li><Link to="/ultimas-noticias-del-pistacho" on:click={cerrarMenu}>Noticias</Link></li>
           </ul>
         </div>
       {/if}
@@ -79,11 +79,11 @@
       <div class="menu-horizontal">
         <ul class="menu-list-horizontal">
           <li><a href="/">INICIO</a></li>
-          <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
-          <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
-          <li><Link to="/fotos" on:click={() => window.scrollTo(0,0)}>FOTOS</Link></li>
+          <li><Link to="/recetas" on:click={() => window.scrollTo(0,0)}>RECETAS</Link></li>
           <li><Link to="/nuestra-gente" on:click={() => window.scrollTo(0,0)}>NUESTRA GENTE</Link></li>
           <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>RESPONSABILIDAD SOCIAL EMPRESARIAL</Link></li>
+          <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
+          <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
           <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
         </ul>
       </div>
@@ -91,11 +91,11 @@
 
     <div class="content">
       <Route path="/" component={Inicio} />
-      <Route path="/acerca-de-nosotros" component={AcercaDeNosotros} />
-      <Route path="/acerca-del-pistacho" component={AcercaDelPistacho} />
-      <Route path="/fotos" component={Fotos} />
+      <Route path="/recetas" component={Recetas} />
       <Route path="/nuestra-gente" component={NuestraGente} />
       <Route path="/responsabilidad-social-empresarial" component={ResposabilidadSocialEmpresarial} />
+      <Route path="/acerca-de-nosotros" component={AcercaDeNosotros} />
+      <Route path="/acerca-del-pistacho" component={AcercaDelPistacho} />
       <Route path="/ultimas-noticias-del-pistacho" component={UltimasNoticiasDelPistacho} />
     </div>
   </Router>
@@ -108,13 +108,12 @@
       <a id="gmail-link" href="/" target="_blank"><img src="./images/Gmail.png" alt="Gmail" /></a>
     </div>
     <div class="footer-copy">
-      <p>© 2024 por Jonathan Jeifetz</p>
+      <p>© 2025 por Jonathan Jeifetz</p>
     </div>
   </div>
 </main>
 
 <style>
-  /* --- VARIABLES DE COLOR (Paleta Pistachos NOA) --- */
   :root {
     --oro-pistacho: #D4AF37;
     --verde-oliva: #6B8E23;
@@ -123,7 +122,6 @@
     --texto-oscuro: #2D1E12;
   }
 
-  /* --- BASE --- */
   :global(body) {
     background-color: var(--crema-arena);
     color: var(--texto-oscuro);
@@ -139,10 +137,9 @@
     background-color: #FFFFFF;
     padding: 20px 0;
     text-align: center;
-    border-bottom: 3px solid var(--oro-pistacho); /* Detalle de lujo */
+    border-bottom: 3px solid var(--oro-pistacho);
   }
 
-  /* --- NAVEGACIÓN --- */
   .menu-horizontal {
     display: none;
     background-color: var(--marron-tierra);
@@ -164,7 +161,7 @@
   :global(.menu-list-horizontal a), .menu-list-horizontal li a {
     color: var(--crema-arena);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 13px; /* SE MANTIENE EL ORIGINAL */
     font-weight: bold;
     text-transform: uppercase;
     white-space: nowrap;
@@ -203,7 +200,6 @@
     border-bottom: 1px solid #5a4128;
   }
 
-  /* --- CONTENIDO --- */
   .content {
     background-color: var(--verde-oliva);
     color: white;
@@ -218,7 +214,6 @@
     .menu-mobile { display: none; }
   }
 
-  /* --- FOOTER --- */
   .footer { 
     background-color: #FFFFFF; 
     color: var(--marron-tierra);
@@ -248,7 +243,7 @@
   .footer img { 
     width: 50px; 
     height: auto;
-    filter: sepia(0.5) contrast(1.2); /* Sutil efecto para que peguen con la paleta */
+    filter: sepia(0.5) contrast(1.2);
   }
 
   .footer-copy {
@@ -258,11 +253,7 @@
   }
 
   @media (max-width: 768px) {
-    .footer h4 {
-      font-size: 1.2rem; 
-    }
-    .footer .social-icons {
-      gap: 50px; 
-    }
+    .footer h4 { font-size: 1.2rem; }
+    .footer .social-icons { gap: 50px; }
   }
 </style>

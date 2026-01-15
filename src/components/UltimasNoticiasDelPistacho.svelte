@@ -1,18 +1,13 @@
 <div class="cuerpo">
-    <div class="noticias-header">
+    <div class="contenedor-texto">
         <h1>Últimas Noticias del Pistacho</h1>
-        <div class="linea-decorativa"></div>
-    </div>
-    
-    <div class="noticias-placeholder">
-        <div class="icono-noticia">📰</div>
+        <div class="divisor-oro"></div>
         <h3>¡Próximamente!</h3>
-        <p>Estamos preparando las novedades más relevantes sobre la cosecha, el mercado y la cultura del pistacho en La Rioja.</p>
+        <p>Estamos preparando las novedades más relevantes sobre la cosecha, el mercado y la cultura del pistacho en nuestra región.</p>
     </div>
 </div>
 
 <style>
-    /* --- VARIABLES --- */
     :root {
       --oro-pistacho: #D4AF37;
       --verde-oliva: #6B8E23;
@@ -22,75 +17,58 @@
 
     .cuerpo {
         margin: 0;
-        padding: 60px 20px;
+        padding: 80px 20px;
         text-align: center;
         background-color: var(--crema-arena);
-        min-height: 75vh;
+        min-height: 70vh;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 
-    .noticias-header {
-        margin-bottom: 50px;
+    .contenedor-texto {
+        max-width: 700px;
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
     }
 
     .cuerpo h1 {
         font-family: 'Montserrat', sans-serif;
-        color: var(--marron-tierra);
-        font-size: 36px;
+        color: var(--verde-oliva);
+        font-size: 32px;
         text-transform: uppercase;
-        margin-bottom: 15px;
+        margin: 0;
         letter-spacing: 1px;
     }
 
-    .linea-decorativa {
-        width: 80px;
-        height: 4px;
+    .divisor-oro {
+        width: 100px;
+        height: 3px;
         background-color: var(--oro-pistacho);
-        margin: 0 auto;
-        border-radius: 2px;
-    }
-
-    .noticias-placeholder {
-        max-width: 600px;
-        padding: 40px;
-        border: 2px dashed var(--oro-pistacho); /* Estilo "en construcción" elegante */
-        border-radius: 15px;
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-
-    .icono-noticia {
-        font-size: 3rem;
-        margin-bottom: 10px;
+        margin: 25px auto;
     }
 
     .cuerpo h3 {
         font-family: 'Montserrat', sans-serif;
-        color: var(--verde-oliva);
-        font-size: 28px;
-        margin: 10px 0;
+        color: var(--marron-tierra);
+        font-size: 24px;
+        margin-bottom: 15px;
     }
 
     .cuerpo p {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Montserrat', sans-serif;
         color: var(--marron-tierra);
-        line-height: 1.6;
-        font-size: 1.1rem;
-        margin-top: 15px;
+        opacity: 0.8;
+        line-height: 1.5;
+        font-style: italic;
     }
 
-    /* --- RESPONSIVE --- */
     @media (max-width: 768px) {
-        .cuerpo h1 {
-            font-size: 28px;
-        }
-        .noticias-placeholder {
-            padding: 30px 15px;
-            margin: 0 10px;
-        }
-        .cuerpo h3 {
-            font-size: 22px;
-        }
+        .contenedor-texto { padding: 30px 20px; }
+        .cuerpo h1 { font-size: 24px; }
+        .cuerpo h3 { font-size: 20px; }
     }
 </style>

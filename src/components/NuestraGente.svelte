@@ -1,11 +1,13 @@
 <div class="cuerpo">
-    <h1>Nuestra Gente</h1>
-    <h3>¡Próximamente!</h3>
-    <div class="decoracion-oro"></div>
+    <div class="contenedor-texto">
+        <h1>Nuestra Gente</h1>
+        <div class="divisor-oro"></div>
+        <h3>¡Próximamente!</h3>
+        <p>Estamos preparando un espacio para presentar al equipo humano que hace posible la excelencia de nuestros pistachos.</p>
+    </div>
 </div>
 
 <style>
-    /* --- VARIABLES --- */
     :root {
       --oro-pistacho: #D4AF37;
       --verde-oliva: #6B8E23;
@@ -15,49 +17,58 @@
 
     .cuerpo {
         margin: 0;
-        padding: 100px 20px; /* Más espacio para que no se vea vacío */
+        padding: 80px 20px;
         text-align: center;
         background-color: var(--crema-arena);
-        min-height: 60vh; /* Para que ocupe gran parte de la pantalla */
+        min-height: 70vh;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
+    .contenedor-texto {
+        max-width: 700px;
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
     .cuerpo h1 {
         font-family: 'Montserrat', sans-serif;
-        color: var(--marron-tierra);
-        font-size: 42px;
+        color: var(--verde-oliva);
+        font-size: 32px;
         text-transform: uppercase;
-        margin-bottom: 10px;
-        letter-spacing: 2px;
+        margin: 0;
+        letter-spacing: 1px;
+    }
+
+    .divisor-oro {
+        width: 100px;
+        height: 3px;
+        background-color: var(--oro-pistacho);
+        margin: 25px auto;
     }
 
     .cuerpo h3 {
         font-family: 'Montserrat', sans-serif;
-        color: var(--verde-oliva);
-        font-size: 28px;
-        font-weight: 300;
-        margin-top: 0;
+        color: var(--marron-tierra);
+        font-size: 24px;
+        margin-bottom: 15px;
     }
 
-    /* Una línea decorativa para que no se vea tan simple */
-    .decoracion-oro {
-        width: 60px;
-        height: 4px;
-        background-color: var(--oro-pistacho);
-        margin-top: 20px;
-        border-radius: 2px;
+    .cuerpo p {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--marron-tierra);
+        opacity: 0.8;
+        line-height: 1.5;
+        font-style: italic;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
-        .cuerpo h1 {
-            font-size: 32px;
-        }
-        .cuerpo h3 {
-            font-size: 24px;
-        }
+        .contenedor-texto { padding: 30px 20px; }
+        .cuerpo h1 { font-size: 24px; }
+        .cuerpo h3 { font-size: 20px; }
     }
 </style>

@@ -77,12 +77,12 @@
   }
 </script>
 
+<!--
 <div class="seccion-principal">
   <h1>De Catamarca al mundo: Nuestro alcance</h1>
   <div id="flourish-container">
     <div class="flourish-embed flourish-map" data-src="visualisation/27220153"></div>
-  </div>
-
+  </div>  
   <h1 class="titulo-galeria">Nuestra Producción en Imágenes</h1>
   <div class="galeria-scroll-container" bind:this={galeriaContainer}>
     <div class="galeria-track">
@@ -115,6 +115,17 @@
     </div>
   {/if}
 </div>
+-->
+
+<!-- Esta seccion se elimina cuando tengo la info posta -->
+<div class="cuerpo-inicio">
+    <div class="contenedor-tarjeta">
+        <h1>Bienvenidos a Pistachos Riojanos</h1>
+        <div class="divisor-oro"></div>
+        <h3>Excelencia desde Catamarca</h3>
+        <p>Estamos preparando una experiencia digital completa para mostrarte el corazón de nuestra producción y la calidad premium de nuestros pistachos.</p>
+    </div>
+</div>
 
 <style>
   :root {
@@ -123,6 +134,70 @@
     --marron-tierra: #4B3621;
     --crema-arena: #FDFBF7;
   }
+
+  .cuerpo-inicio {
+        margin: 0;
+        padding: 60px 20px; /* Reducimos un poco el padding general del contenedor */
+        text-align: center;
+        background-color: var(--crema-arena);
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contenedor-tarjeta {
+        max-width: 700px;
+        background: white;
+        padding: 40px 50px 60px 50px; /* Ajustamos: menos arriba (40px) y más abajo (60px) para "subir" el contenido */
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Cambiamos a start para controlar mejor la posición */
+    }
+
+    .cuerpo-inicio h1 {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--verde-oliva);
+        font-size: 32px;
+        text-transform: uppercase;
+        margin-top: 0; /* Aseguramos que no haya margen extra arriba */
+        margin-bottom: 0;
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
+
+    .divisor-oro {
+        width: 100px;
+        height: 3px;
+        background-color: var(--oro-pistacho);
+        margin: 20px auto; /* Reducimos ligeramente el margen del divisor */
+    }
+
+  .cuerpo-inicio h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--marron-tierra);
+      font-size: 24px;
+      margin-bottom: 15px;
+  }
+
+  .cuerpo-inicio p {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--marron-tierra);
+      opacity: 0.8;
+      line-height: 1.6;
+      font-style: italic;
+      font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+      .contenedor-tarjeta { padding: 30px 20px; }
+      .cuerpo-inicio h1 { font-size: 24px; }
+      .cuerpo-inicio h3 { font-size: 20px; }
+  }
+  /* --------------------------------------------------------------------------------- */
 
   .seccion-principal {
     background-color: var(--crema-arena);

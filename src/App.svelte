@@ -100,6 +100,7 @@
     </div>
   </Router>
 
+  <!-- Descomentar cuabdo se tenga el Instagram, Mail y Wpp
   <div class="footer">
     <h4>¿Preguntas? ¡Estamos a un clic de distancia!</h4>
     <div class="social-icons">
@@ -111,6 +112,8 @@
       <p>© 2025 por Jonathan Jeifetz</p>
     </div>
   </div>
+  -->
+
 </main>
 
 <style>

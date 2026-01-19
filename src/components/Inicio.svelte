@@ -120,7 +120,7 @@
 <!-- Esta seccion se elimina cuando tengo la info posta -->
 <div class="cuerpo-inicio">
     <div class="contenedor-tarjeta">
-        <h1>Bienvenido a Pistachos del NOA</h1>
+        <h1>Bienvenidos a Pistachos del NOA</h1>
         <div class="divisor-oro"></div>
         <h3>Excelencia desde Catamarca</h3>
         <p>Estamos preparando una experiencia digital completa para mostrarte el corazón de nuestra producción y la calidad premium de nuestros pistachos.</p>

@@ -43,13 +43,8 @@
 
 <main>
   <div class="header"> 
-    <a href="/">
-      <img 
-        src="./images/Logo-Pistachos.png" 
-        alt="Logo-Pistachos-NOA" 
-        width="400" 
-        height="177" 
-      />
+    <a href="/" on:click={cerrarMenu}>
+      <img src="./images/Logo-Pistachos.png" alt="Logo-Pistachos" width="400" height="177" />
     </a>
   </div> 
 
@@ -81,7 +76,7 @@
           <li><a href="/">INICIO</a></li>
           <li><Link to="/recetas" on:click={() => window.scrollTo(0,0)}>RECETAS</Link></li>
           <li><Link to="/nuestra-gente" on:click={() => window.scrollTo(0,0)}>NUESTRA GENTE</Link></li>
-          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>RESPONSABILIDAD SOCIAL EMPRESARIAL</Link></li>
+          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>R.S.E.</Link></li>
           <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
           <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
           <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
@@ -100,7 +95,6 @@
     </div>
   </Router>
 
-  <!-- Descomentar cuabdo se tenga el Instagram, Mail y Wpp
   <div class="footer">
     <h4>¿Preguntas? ¡Estamos a un clic de distancia!</h4>
     <div class="social-icons">
@@ -112,7 +106,6 @@
       <p>© 2025 por Jonathan Jeifetz</p>
     </div>
   </div>
-  -->
 
 </main>
 
@@ -127,8 +120,7 @@
 
   :global(body) {
     background-color: var(--crema-arena);
-    color: var(--texto-oscuro);
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -146,7 +138,7 @@
   .menu-horizontal {
     display: none;
     background-color: var(--marron-tierra);
-    padding: 20px 0;
+    padding: 25px 0;
     margin: 0;
   }
 
@@ -162,17 +154,13 @@
   }
 
   :global(.menu-list-horizontal a), .menu-list-horizontal li a {
-    color: var(--crema-arena);
+    color: white;
     text-decoration: none;
-    font-size: 13px; /* SE MANTIENE EL ORIGINAL */
+    font-size: 13.5px;
     font-weight: bold;
     text-transform: uppercase;
     white-space: nowrap;
-    transition: color 0.3s ease;
-  }
-
-  :global(.menu-list-horizontal a:hover) {
-    color: var(--oro-pistacho);
+    padding: 0 5px;
   }
 
   .menu-button {
@@ -197,7 +185,7 @@
 
   :global(.menu-list-vertical a), .menu-list-vertical li a {
     display: block;
-    color: var(--crema-arena);
+    color: white;
     padding: 20px;
     text-decoration: none;
     border-bottom: 1px solid #5a4128;
@@ -205,7 +193,6 @@
 
   .content {
     background-color: var(--verde-oliva);
-    color: white;
     margin: 0;
     display: flow-root; 
     min-height: 50vh;
@@ -219,14 +206,12 @@
 
   .footer { 
     background-color: #FFFFFF; 
-    color: var(--marron-tierra);
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     padding: 60px 20px; 
     margin: 0;
-    text-align: center;
-    border-top: 1px solid #eee;
+    text-align: center; 
   }
 
   .footer h4 {
@@ -246,13 +231,6 @@
   .footer img { 
     width: 50px; 
     height: auto;
-    filter: sepia(0.5) contrast(1.2);
-  }
-
-  .footer-copy {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    opacity: 0.8;
   }
 
   @media (max-width: 768px) {

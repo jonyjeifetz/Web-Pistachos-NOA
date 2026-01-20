@@ -23,7 +23,7 @@
 
   onMount(() => {
     const phoneNumber = "+5491156680181"; 
-    const prewrittenMessage = encodeURIComponent("¡Hola! Estoy interesado en saber más sobre los pistachos de Catamarca.");
+    const prewrittenMessage = encodeURIComponent("¡Hola! Estoy interesado en saber más sobre los pistachos del NOA.");
     const emailAddress = "djeifetz@gmail.com"; 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     

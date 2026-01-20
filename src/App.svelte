@@ -22,18 +22,20 @@
   }
 
   onMount(() => {
-    const phoneNumber = "+5491127161950"; 
-    const prewrittenMessage = encodeURIComponent("¡Hola! Estoy interesado en saber más sobre los pistachos de La Rioja.");
-    const emailAddress = "info@pistachosriojanos.com"; 
+    const phoneNumber = "+5491156680181"; 
+    const prewrittenMessage = encodeURIComponent("¡Hola! Estoy interesado en saber más sobre los pistachos de Catamarca.");
+    const emailAddress = "djeifetz@gmail.com"; 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     document.getElementById("whatsapp-link").href = isMobile ? 
       `https://wa.me/${phoneNumber}?text=${prewrittenMessage}` : 
       `https://web.whatsapp.com/send?phone=${phoneNumber}?text=${prewrittenMessage}`;
 
+    /* Descomentar cuando tenga el intagram posta
     document.getElementById("instagram-link").href = isMobile ? 
       "instagram://user?username=pistachosriojanos" : 
       "https://www.instagram.com/pistachosriojanos";
+    */
 
     document.getElementById("gmail-link").href = isMobile ? 
       `mailto:${emailAddress}?subject=Mas Informacion&body=${prewrittenMessage}` : 
@@ -98,12 +100,13 @@
   <div class="footer">
     <h4>¿Preguntas? ¡Estamos a un clic de distancia!</h4>
     <div class="social-icons">
-      <a id="instagram-link" href="/" target="_blank"><img src="./images/Instagram.png" alt="Instagram" /></a>
+      <!-- Descomentar cuando tenga el intagram posta -->
+      <!-- <a id="instagram-link" href="/" target="_blank"><img src="./images/Instagram.png" alt="Instagram" /></a> -->
       <a id="whatsapp-link" href="/" target="_blank"><img src="./images/What's App.png" alt="Whats App" /></a>
       <a id="gmail-link" href="/" target="_blank"><img src="./images/Gmail.png" alt="Gmail" /></a>
     </div>
     <div class="footer-copy">
-      <p>© 2025 por Jonathan Jeifetz</p>
+      <p>© J.J Design · 2024</p>
     </div>
   </div>
 

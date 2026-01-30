@@ -78,7 +78,7 @@
           <li><a href="/">INICIO</a></li>
           <li><Link to="/recetas" on:click={() => window.scrollTo(0,0)}>RECETAS</Link></li>
           <li><Link to="/nuestra-gente" on:click={() => window.scrollTo(0,0)}>NUESTRA GENTE</Link></li>
-          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>R.S.E.</Link></li>
+          <li><Link to="/responsabilidad-social-empresarial" on:click={() => window.scrollTo(0,0)}>R.S.E</Link></li>
           <li><Link to="/acerca-de-nosotros" on:click={() => window.scrollTo(0,0)}>ACERCA DE NOSOTROS</Link></li>
           <li><Link to="/acerca-del-pistacho" on:click={() => window.scrollTo(0,0)}>ACERCA DEL PISTACHO</Link></li>
           <li><Link to="/ultimas-noticias-del-pistacho" on:click={() => window.scrollTo(0,0)}>NOTICIAS</Link></li>
